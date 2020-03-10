@@ -1,0 +1,6 @@
+#+LAYOUT: post
+#+TITLE:  This blog rocks!
+#+DATE:   2020-03-10
+#+tags: jekyll emacs org-mode
+
+Glorious org files extracted from the web of my second brain knowledge!

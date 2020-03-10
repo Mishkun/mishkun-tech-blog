@@ -1,0 +1,8 @@
+#+LAYOUT: page
+#+TITLE: About
+#+PERMALINK: /about/
+
+* About me
+I am just an Android developer who believes in the art of programming. If you
+enjoy my content - Follow me
+on twitter!
