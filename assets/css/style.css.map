@@ -3,11 +3,11 @@
 	"file": "style.css",
 	"sources": [
 		"style.scss",
-		"../../usr/local/bundle/gems/plainwhite-0.9/_sass/plain.scss",
-		"../../usr/local/bundle/gems/plainwhite-0.9/_sass/ext/_fonts.scss",
-		"../../usr/local/bundle/gems/plainwhite-0.9/_sass/ext/_normalize.scss",
-		"../../usr/local/bundle/gems/plainwhite-0.9/_sass/_syntax.scss",
-		"../../usr/local/bundle/gems/plainwhite-0.9/_sass/ext/_solarized-light.scss"
+		"vendor/bundle/ruby/2.6.0/gems/plainwhite-0.9/_sass/plain.scss",
+		"vendor/bundle/ruby/2.6.0/gems/plainwhite-0.9/_sass/ext/_fonts.scss",
+		"vendor/bundle/ruby/2.6.0/gems/plainwhite-0.9/_sass/ext/_normalize.scss",
+		"vendor/bundle/ruby/2.6.0/gems/plainwhite-0.9/_sass/_syntax.scss",
+		"vendor/bundle/ruby/2.6.0/gems/plainwhite-0.9/_sass/ext/_solarized-light.scss"
 	],
 	"sourcesContent": [
 		"@import \"plain\";",
