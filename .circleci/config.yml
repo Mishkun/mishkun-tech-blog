@@ -34,7 +34,7 @@ jobs:
             git config user.name "ci-build"
       - add_ssh_keys:
           fingerprints:
-            - '3a:3a:4c:70:74:71:e1:0b:fd:4f:df:00:92:04:c9:e8'
+            - '2e:93:83:b5:06:c0:8d:8d:74:ab:96:24:30:04:20:97'
       - run:
           name: Deploy slides to gh-pages branch
           command: gh-pages --dist _site
