@@ -7,12 +7,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: rubygems-v1-{{ checksum "Gemfile.lock" }}
+          key: rubygems-v2-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install dependencies
           command: bundle check || bundle install --path vendor/bundle
       - save_cache:
-          key: rubygems-v1-{{ checksum "Gemfile.lock" }}
+          key: rubygems-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
