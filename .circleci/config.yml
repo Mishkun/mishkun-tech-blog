@@ -6,9 +6,15 @@ jobs:
       - image: jekyll/jekyll:4.0.0
     steps:
       - checkout
+      - restore_cache:
+        key: rubygems-v1-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install dependencies
           command: bundle check || bundle install
+      - save_cache:
+        key: rubygems-v1-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
       - run:
           name: Build site
           command: jekyll build
