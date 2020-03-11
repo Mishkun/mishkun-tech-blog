@@ -1,0 +1,53 @@
+version: 2.1
+jobs:
+  build_site:
+    docker:
+      - image: jekyll/jekyll:4.0.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: bundle check || bundle install
+      - run:
+          name: Build site
+          command: jekyll build
+      - run:
+          name: Disable Jekyll on GH Pages
+          command: touch _site/.nojekyll
+      - persist_to_workspace:
+          root: .
+          paths:
+              - _site
+  site-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "ci-build@mishkun"
+            git config user.name "ci-build"
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - 'bc:3c:4e:87:aa:46:91:08:3b:4e:82:c5:8d:c7:b7:74'
+      - run:
+          name: Deploy slides to gh-pages branch
+          command: gh-pages --dist .
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build_site:
+          filters:
+            branches:
+              ignore: gh-pages
+      - site-deploy:
+          requires:
+            - build_site
+          filters:
+            branches:
+              only: master
