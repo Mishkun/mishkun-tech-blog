@@ -23,10 +23,8 @@ title: Mishkun's garage
 description: >- # this means to ignore newlines until "baseurl:"
   A blog of functional programming cultist dedicated to spread FP truth to the
   Android world.
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://mishkun.rocks" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: TheMishkun
-github_username: Mishkun
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://mishkun.rocks"
 
 # Build settings
 theme: plainwhite
