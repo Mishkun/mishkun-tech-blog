@@ -1,8 +1,21 @@
 #+LAYOUT: page
 #+TITLE: About
 #+PERMALINK: /about/
+#+DATE:   2020-03-10
 
-* About me
-I am just an Android developer who believes in the art of programming. If you
-enjoy my content - Follow me
-on twitter!
+* About
+My name is Mikhail Levchenko and this is my professional blog. Here I write
+about programming and related stuff.
+
+I am an Android developer at [[auto.ru][Auto.ru]], living in Rostov-on-Don, Russia.
+** My projects
+*** ФП-среда (FP-Wednesday)
+This is a functional programming user group located in Rostov-on-Don, led by me. We
+hold monthly meetups discussing functional programming. [[https://tele.gs/lambda61][Join here]]
+** My talks
+I enjoy public speaking a lot, but only some of my talks were recorded and
+available online.
+*** Kotlin's type system (Russian)
+Talk explaining Kotlin's type system structure. [[https://youtu.be/MorzcJq4f4g][Watch here]]
+*** Testing like a mathematician (Russian)
+Talk about using property based testing with Kotest. [[https://youtu.be/ILnY7tvjxco?t=2610][Watch here]]

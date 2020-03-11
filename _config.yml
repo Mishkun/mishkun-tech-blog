@@ -34,11 +34,14 @@ plugins:
 
 plainwhite:
   name: Mikhail Levchenko
+  tagline: "FP |> Android"
   date_format: "%b %-d, %Y"
   show_excerpts: true
   navigation:
-    - title: About
+    - title: About me
       url: "/about"
+
+  sitemap: true
 
   social_links:
     twitter: TheMishkun
