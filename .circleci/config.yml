@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build_site:
+    working_directory: "/srv/jekyll"
     docker:
       - image: jekyll/jekyll:4.0.0
     steps:
@@ -8,17 +9,14 @@ jobs:
       - run:
           name: Install dependencies
           command: bundle check || bundle install
-          working_directory: ~/project
       - run:
           name: Build site
           command: jekyll build
-          working_directory: ~/project
       - run:
           name: Disable Jekyll on GH Pages
           command: touch _site/.nojekyll
-          working_directory: ~/project
       - persist_to_workspace:
-          root: ~/project
+          root: .
           paths:
               - _site
   site-deploy:
