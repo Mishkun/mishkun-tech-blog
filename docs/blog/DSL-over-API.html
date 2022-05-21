@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-05-22 Sun 01:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Антипаттерн DSL over API</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link id="pagestyle" rel="stylesheet" type="text/css" href="../attachments/org.css"/>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="date">Created: 2022-05-22 Sun 01:18</p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Антипаттерн DSL over API</h1>
+
+<div id="org9149f54" class="figure">
+<p><img src="../attachments/dsloverapi1.jpg" alt="dsloverapi1.jpg" />
+</p>
+</div>
+
+<div class="abstract" id="org01ff6d9">
+<p>
+Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
+embedded domain specific languages. Писать-то может их и классно, но часто потом
+пользоваться получившимися DSL не очень удобно. В чём же проблема?
+</p>
+
+</div>
+
+<div id="outline-container-orgd853732" class="outline-2">
+<h2 id="orgd853732">Что такое DSL?</h2>
+<div class="outline-text-2" id="text-orgd853732">
+<p>
+Вот у нас есть наш general purpose language. В теории на нём одинаково норм
+считать траекторию ракеты или показывать котиков в ленте клона тиктока. Можно
+было бы обойтись чисто классами да функциями. LISP же обходится только списками.
+Но есть большое количество задач типа арифметики или условных выражений, которые
+встречаются везде и их чисто синтаксически удобнее читать в другой форме,
+например, как бинарные операторы для арифметики. И это удобство растёт из
+культуры. Ну вот в школе нас так научили записывать арифметику инфиксной
+нотацией а не обратной польской.  Поэтому нам нужны скобки, бинарные операторы.
+И создатели языка обычно не мучают пользователей и добавляют всё это в язык. И
+вот в Kotlin (и других языках) тебе говорят - гибкость языка позволяет тебе, а
+не только авторам описать свой домен так, чтобы его задачи можно было решать
+конструкциями, приближенными к встроенным в язык. Создать свой небольшой
+embedded domain specific language, играющий по правилам языка-хоста. Это очень
+круто, парсер, транслятор придумывать не нужно, поддержку в IDE делать не нужно.
+А выглядеть это будет приближенно к культурно-исторической практике решения
+задач твоего домена. Только плюсы, да?
+</p>
+</div>
+</div>
+<div id="outline-container-org111883e" class="outline-2">
+<h2 id="org111883e">Тогда почему же некоторые eDSL до жути нравятся, а от некоторых тошнит?</h2>
+<div class="outline-text-2" id="text-org111883e">
+<p>
+Сразу забегу вперёд. Чаще всего плохой eDSL получается, когда кто-то
+концентрируется на &ldquo;embedded language&rdquo;, забывая про &ldquo;domain specific&rdquo;. В
+программировании когда-то давно придумали такую классную штуку как разделение на
+&ldquo;backend&rdquo; и &ldquo;frontend&rdquo;. И я сейчас не про веб-разработку, а про нечто более
+широкое. Про Low level и High level. Dsl - это фронтенд, с которым
+взаимодействует пользователь. И рано или поздно у него найдется потребность
+которую ты не покрыл. В обычном мире такие юзеры &ldquo;с потребностями&rdquo; пишут
+альтернативные клиенты для твоего API. Но если у тебя нет какого то &ldquo;API&rdquo; и твой
+сервер &ldquo;отдаёт сразу html странички&rdquo;, то есть помимо dsl с какими-то выдуманными
+тобой юзкейсами обходных путей нет, то ему придётся какими то костылями
+доставать из твоего dsl то что нужно и то как ему удобно. И это будет ломаться и
+твоя абстракция потечет.
+</p>
+</div>
+</div>
+<div id="outline-container-org9606b55" class="outline-2">
+<h2 id="org9606b55">Уважение к коллеге</h2>
+<div class="outline-text-2" id="text-org9606b55">
+<p>
+Здесь очень важно отбросить привычку из продуктовой разработки скрывать от
+&ldquo;глупых пользователей&rdquo; &ldquo;опасные&rdquo; методы API. Когда ты пишешь библиотеку, твои
+пользователи могут быть кратно умнее тебя и иметь более серьёзные потребности,
+чем те, для которых ты когда-либо тестировал свою библиотеку. Или наборот. Но я
+считаю, что надо проявлять уважение к коллегам-программистам и не придумывать,
+что есть какие-то &ldquo;приватные&rdquo; апи, которые автору библиотеки можно, а
+пользователь этого всего видеть не должен и пускай он сидит в пещере за ширмой и
+по теням eDSL угадывает, что там на самом деле и в каком порядке дёргается &ldquo;у
+огня&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-org7694708" class="outline-2">
+<h2 id="org7694708">Ну а кишки-то куда девать?</h2>
+<div class="outline-text-2" id="text-org7694708">
+<p>
+Если делаешь библиотеку с eDSL - делай два артефакта. Один с описанием твоего
+домена в &ldquo;обычных&rdquo; функциях и классах - назовём его API. В другом можешь
+извращаться с делегатами, инфиксами и переопределением операторов сколько
+хочешь. Главное правило - играй честно, твоему eDSL должно быть доступно всё то
+же самое, что и пользователю API. Только так можно сделать библиотеку, которая
+не будет бесить в краевых случаях, о которых ты не подумал.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e265d0" class="outline-2">
+<h2 id="org1e265d0">Это пост не только про eDSL</h2>
+<div class="outline-text-2" id="text-org1e265d0">
+<p>
+То что я выше написал, работает и про обычную разработку библиотек. Сокрытие
+реализации - классная штука, которая помогает не бояться рефакторить код,
+которым пользуются другие. Но она хороша пока ты сам играешь по своим правилам.
+Когда же ты пользуешься хаками типа internal или package-private, ты обходишься
+с пользователем как со слепым котенком и ставишь его ниже себя. Говоришь, что
+тебе что-то можно, если очень хочется, а пользователю нельзя, он бесправный. А
+пользователь не дурак, ему работу делать надо. Он просто скопирует твой код к
+себе в проект (если лицензия позволяет), поменяет что нужно. И ты достиг
+совершенно противоположного эффекта - теперь пользователь заложился не на твоё
+апи и ты никак их не контролируешь и мажорное обновление ему будет очень больно
+даваться. Да, это его проблемы, он хакнул, но этого можно было избежать.
+</p>
+</div>
+</div>
+<div id="outline-container-orga1dadfb" class="outline-2">
+<h2 id="orga1dadfb">В общем, будьте котиками</h2>
+<div class="outline-text-2" id="text-orga1dadfb">
+<p>
+Общайтесь с пользователями вашего кода на равных и вспоминайте этот пост, когда
+в очередной раз придётся копировать какой-то класс к себе в проект чтобы
+поменять в нём пару строчек. Кстати, когда у вас в последний раз такое было?
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6c4d01" class="outline-2">
+<h2 id="orgd6c4d01">P.S.</h2>
+<div class="outline-text-2" id="text-orgd6c4d01">
+<p>
+Меня на размышления про eDSL натолкнула часть про проблемы JUnit <a href="https://youtu.be/LEZv-kQUSi4">из этого
+доклада Стюарта Халловея</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="telegram-button button" href="https://t.me/izpodshtorki" target="_blank"><i></i><span>Подпишись и обсуждай в Telegram</span></a>
+</div>
+</body>
+</html>
