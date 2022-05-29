@@ -6,7 +6,7 @@
 <!-- 2022-05-30 Mon 18:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Голос из под шторки</title>
+<title>Мой .zshrc с использованием zinit</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -2732,50 +2732,318 @@ p.verse {
 </style>
 </head>
 <body>
+<div id="preamble" class="status">
+<p class="date">Дата публикации: 29-05-2022</p>
+</div>
 <div id="content" class="content">
-<h1 class="title">Голос из под шторки</h1>
+<h1 class="title">Мой .zshrc с использованием zinit</h1>
 
-<div id="org79d73ef" class="figure">
-<p><img src="https://mishkun.xyz/attachments/izpodshtorki.jpg" alt="izpodshtorki.jpg" />
+<div id="org17dc555" class="figure">
+<p><img src="https://mishkun.xyz/attachments/zshell_hero.png" alt="zshell_hero.png" />
 </p>
 </div>
 
-<a class="github-button button" href="https://github.com/Mishkun" target="_blank">
-<svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
-    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-</svg><span>Подпишись на Github</span>
-</a>
-<a class="telegram-button button" href="https://t.me/themishkun" target="_blank">
-<i></i><span>Напиши мне в Telegram</span>
-</a>
-<br>
-
-
-<dl class="org-dl">
-<dt><a href="blog/Coeffects.html">Коэффекты</a></dt><dd>Коэффекты - очень размытое понятие, используемое в разных контекстах немного
-по-разному. Но для построения чисто функционального приложения они являются
-очень важными. Попробую обьяснить, как я их понимаю сам.</dd>
-<dt><a href="blog/Comments.html">Комментарии в коде</a></dt><dd>Устаревание комментариев в коде - проблема, для которой, на первый взгляд, не
-найти хорошего решения. Попробую накидать свои мысли об этом.</dd>
-<dt><a href="blog/Di-frameworks.html">Решают ли DI-фреймворки больше проблем, чем создают?</a></dt><dd>В моём канале с мемами много шуток про то, что в спорах между Dagger 2 и Koin на
-самом деле побеждают фабрики. Так вот, это не шутки. Я считаю что DI-фреймворки
-в android - это подражание спрингерам, дань моде, следствие хронического
-ООП-клинкода головного мозга и просто переоценённое излишество. Жёсткий наброс
-вкинут, давайте разбираться, правда ли это.</dd>
-<dt><a href="blog/Online-meetups.html">Кому нужны онлайн митапы?</a></dt><dd>Провести митап онлайн гораздо дешевле чем снимать помещение и кормить всех
-пиццулей. На мой взгляд это путь в никуда, а сам я всегда стараюсь
-организовывать митапы оффлайн. Рассказываю, почему.</dd>
-<dt><a href="blog/DSL-over-API.html">Антипаттерн DSL over API</a></dt><dd>Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
-embedded domain specific languages. Писать-то может их и классно, но часто потом
-пользоваться получившимися DSL не очень удобно. В чём же проблема?</dd>
-<dt><a href="blog/Data-oriented-programming.html">Data Oriented Programming</a></dt><dd>Мой обзор на MEAP книги Data Oriented Programming. Неплохая книжечка, в которой
-описаны все плюсы clojure, но о самом языке ни слова.</dd>
-<dt><a href="blog/zshell-setup.html">Мой .zshrc с использованием zi</a></dt><dd>Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
+<div class="abstract" id="org1a8e32e">
+<p>
+Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
 безграничны: тут тебе и поддержка биндов и виджеты. Жаль, что &ldquo;из коробки&rdquo;
 ничего, кроме автокомплита, не увидишь. Приходится настраивать всё самому,
 дёргая сниппеты из статей добрых людей из интернета. Настало время мне и самому
-написать небольшой гайд по конфигурации zsh.</dd>
-</dl>
+написать небольшой гайд по конфигурации zsh.
+</p>
+
+</div>
+
+<div id="outline-container-orgbda4085" class="outline-2">
+<h2 id="orgbda4085">Почему не Oh-my-zsh или Pretzo?</h2>
+<div class="outline-text-2" id="text-orgbda4085">
+<p>
+Если у тебя стоит сборка oh-my-zsh или pretzo, сноси её. Это помойки из
+скриптов, среди которых приблизительно 99% - это алиасы и темы. Zsh способна
+предложить гораздо больше, а ради кучки алиасов не вижу причин <a href="https://github.com/romkatv/zsh-bench#premade-configs">замедлять</a> свой
+конфиг, тем более что все пакетные менеджеры умеют ставить необходимые вам куски
+OMZ и Pretzo, если вам что-то особенно понравилось. Лично я не перенес в итоге
+ни одного скрипта, кроме автокомплита для Docker.
+</p>
+</div>
+</div>
+<div id="outline-container-org56219d1" class="outline-2">
+<h2 id="org56219d1">Плагины в zshell</h2>
+<div class="outline-text-2" id="text-org56219d1">
+<p>
+Вообще, строго говоря, в zshell нет такого понятия, как плагин. Это просто .zsh
+файлы, которые вы включаете в свой <code>.zshrc</code> файл командой <code>source</code>. При желании
+можно в пару строк сделать подобие пакетного менеджера, который просто будет
+скачивать .zsh файлы по url делать source. Пример такого аскетичного конфига
+есть <a href="https://www.youtube.com/watch?v=bTLYiNvRIVI">на канале Chris@Machine</a>, если тебе интересно разобраться в zsh ещё глубже.
+Я же использую готовый пакетный менджер.
+</p>
+</div>
+</div>
+<div id="outline-container-org76a251a" class="outline-2">
+<h2 id="org76a251a">Конфигурация с пакетным менеджером zinit</h2>
+<div class="outline-text-2" id="text-org76a251a">
+<p>
+Первый шаг к нормальному конфигу zshell - установка пакетного менеджера. Как я
+указал выше, накидать базовый пакетный менеджер достаточно просто. Поэтому
+готовых решений довольно много, сравнение самых известных из них можно
+посмотреть <a href="https://github.com/romkatv/zsh-bench#plugin-managers">здесь</a>. Мой выбор пал на <a href="https://github.com/zdharma-continuum/zinit">zinit</a>, как достаточно популярный, гибкий и
+быстрый. После того как выполнили шаги из introduction, наш <code>.zshrc</code> файл должен
+начинаться с 3 строчек, которые сурсят .zsh файл менеджера, загружают функцию
+<code>zinit</code>, с помощью которой мы будем подключать плагины и добавляет файлы
+автокомплита для неё в zsh.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a626a4;">source</span> <span style="color: #50a14f;">"</span><span style="color: #b751b6;">$</span><span style="color: #6a1868;">HOME</span><span style="color: #50a14f;">/.local/share/zinit/zinit.git/zinit.zsh"</span>
+<span style="color: #a626a4;">autoload</span> -Uz _zinit
+<span style="color: #4078f2;">(</span><span style="color: #a626a4;">(</span> $<span style="color: #50a14f;">{</span>+_comps<span style="color: #50a14f;">}</span> <span style="color: #a626a4;">)</span><span style="color: #4078f2;">)</span> &amp;&amp; <span style="color: #6a1868;">_comps</span><span style="color: #4078f2;">[</span>zinit<span style="color: #4078f2;">]</span>=_zinit
+</pre>
+</div>
+</div>
+<div id="outline-container-org3738141" class="outline-3">
+<h3 id="org3738141">Простейший пример - prompt</h3>
+<div class="outline-text-3" id="text-org3738141">
+<p>
+Как известно, все любители командной строки обожают перегруженные промпты с
+кучей ненужной информации, чтобы почувствовать себя <code>L33T H4CK3rS</code>. Пример
+установки самого выпендрёжного из них - powerlevel10k - есть <a href="https://github.com/zdharma-continuum/zinit#plugins-and-snippets">в документации
+zinit</a>. Я предпочитаю чуть более умеренную <a href="https://github.com/geometry-zsh/geometry">geometry</a>. На её примере заодно и
+разберу основы синтаксиса zinit. Zinit в простом случае принимает в качестве
+координат плагина путь к репозиторию на github в формате <code>&lt;username&gt;/&lt;repo&gt;</code>.
+Другие источники, конечно же, тоже поддерживаются. Zinit сам скачивает
+репозиторий и следит за его обновлением.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit geometry-zsh/geometry
+</pre>
+</div>
+<p>
+Теперь промпт должен смениться на минималистичный треугольник:
+<img src="https://mishkun.xyz/attachments/zshell1.png" alt="zshell1.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org23527bf" class="outline-3">
+<h3 id="org23527bf">Модификаторы</h3>
+<div class="outline-text-3" id="text-org23527bf">
+<p>
+Кроме имени репозитория ещё принимается список модификаторов, которые так или
+иначе влияют на процесс загрузки плагина. Для того чтобы применить модификаторы
+есть два вида синтаксиса на выбор: легаси ice и новенький for. Два модификатора
+придётся лепить почти на все плагины - это <code>lucid</code>, который убирает спам
+отладочными сообщениями и <code>light-mode</code>, который выключает некоторые фичи zinit
+типа статистики использования плагина, чтобы грузиться как можно быстрее.
+Применю их, используя for синтаксис.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit lucid light-mode for <span style="color: #50a14f;">\</span>
+  geometry-zsh/geometry
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org02f7af4" class="outline-2">
+<h2 id="org02f7af4">Fzf - лучший друг zsh</h2>
+<div class="outline-text-2" id="text-org02f7af4">
+<p>
+В терминале часто приходится выбирать какие-то опции. Варианты автокомплита,
+элементы истории, файлы в директории. Справляться со всем этим помогает fzf -
+библиотека для fuzzy search. К примеру, так можно интерактивно выбрать файл по
+сочетанию клавиш <code>ctrl+t</code>.
+<img src="https://mishkun.xyz/attachments/zshell2.gif" alt="zshell2.gif" />
+</p>
+</div>
+<div id="outline-container-org37d84e8" class="outline-3">
+<h3 id="org37d84e8">Установка</h3>
+<div class="outline-text-3" id="text-org37d84e8">
+<p>
+Fzf имеет небольшие тонкости в установке, поэтому в zinit есть специальная
+конструкция <code>pack</code>, которая позволяет переиспользовать скрипты установки
+популярных плагинов.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit pack<span style="color: #50a14f;">"default+keys"</span> for fzf
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org83d2202" class="outline-3">
+<h3 id="org83d2202">Как включить fzf везде</h3>
+<div class="outline-text-3" id="text-org83d2202">
+<p>
+Для того, чтобы заработали сочетания клавиш <code>ctrl+t</code> для выбора файла из текущей
+директории и <code>ctrl+r</code> для интерактивного поиска по истории, нужно засурсить
+файл, находящийся по пути <code>shell/key-bindings.zsh</code> в репозитории fzf. В zinit
+отдельные файлы можны выбирать модификатором <code>pick'&lt;путь до zsh файла от
+корня&gt;'</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid for pick<span style="color: #50a14f;">'shell/key-bindings.zsh'</span> junegunn/fzf
+</pre>
+</div>
+<p>
+Во многих туториалах, в том числе и в документации fzf, можно встретить ещё и
+предложение включить <code>shell/completions.zsh</code> чтобы использовать fzf для
+автокомплита. Однако для меня лучше подошёл плагин <a href="https://github.com/Aloxaf/fzf-tab">fzf-tab</a>, который лучше
+интегрируется со стандартным автокомплитом из zshell.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid has<span style="color: #50a14f;">'fzf'</span> for Aloxaf/fzf-tab
+</pre>
+</div>
+
+<div id="org81ebf67" class="figure">
+<p><img src="https://mishkun.xyz/attachments/zshell3.png" alt="zshell3.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org062ffc2" class="outline-3">
+<h3 id="org062ffc2">Избранные директории</h3>
+<div class="outline-text-3" id="text-org062ffc2">
+<p>
+У меня много проектов, между которыми приходится часто переключаться. Поэтому я
+себе поставил плагин для избранных директорий <a href="https://github.com/pabloariasal/zfm">zfm</a>. По сочетанию <code>ctrl+p</code>
+открывается fzf с выбором моих избранных директорий.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait<span style="color: #50a14f;">'0a'</span> lucid light-mode for <span style="color: #50a14f;">\</span>
+   pabloariasal/zfm
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org617aa17" class="outline-3">
+<h3 id="org617aa17">Интерактивный справочник</h3>
+<div class="outline-text-3" id="text-org617aa17">
+<p>
+Иногда хочется иметь что-то вроде <code>Cmd+Shift+A</code> в Intellij или Command Palette в
+VS Code, чтобы забить &ldquo;get first line of a file&rdquo; и не вспоминать что там за
+команда head и какие у неё команды. Для этого существует <a href="https://github.com/denisidoro/navi">navi</a> - интерактивный
+cheatsheet. Ставится он чуть более сложно - нужно выполнить eval после
+загрузки скрипта. Это делается модификатором <code>atload</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid from<span style="color: #50a14f;">"gh-r"</span> as<span style="color: #50a14f;">"null"</span> for <span style="color: #50a14f;">\</span>
+  atload<span style="color: #50a14f;">'eval "$(navi widget zsh)"'</span> <span style="color: #50a14f;">\</span>
+                        denisidoro/navi
+</pre>
+</div>
+<p>
+Теперь, нажав <code>ctrl+g</code> вы получите интерактивное окошко куда можно будет вбивать
+ваши хотелки и получать готовые сниппеты.
+</p>
+</div>
+</div>
+<div id="outline-container-orge74f4fc" class="outline-3">
+<h3 id="orge74f4fc">Интерактивный jq</h3>
+<div class="outline-text-3" id="text-orge74f4fc">
+<p>
+Наконец, для любителей погонять json-ы <a href="https://github.com/stedolan/jq">jq</a> является незаменимой. Однако иногда
+хочется интерактивно пощупать json, попробовать разные запросы. Некто reegnz
+совместил fzf и jq и получилась очень приятная утилита, которая пайпит результат
+только что введённой команды в jq и позволяет фильтровать результат, да ещё и с
+автокомплитом полей.
+<img src="https://mishkun.xyz/attachments/zshell4.gif" alt="zshell4.gif" />
+Чтобы заполучить эту красоту, достаточно пары строчек. Обрати внимание на
+<code>trackbinds</code> в сочетании с <code>bindmap"\ej -&gt; ^j"</code>. Эти модификаторы дают
+возможность переопределить биндинги, которые приносит плагин. Например, тут мне
+захотелось вызывать jq на <code>ctrl+j</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid light-mode trackbinds for <span style="color: #50a14f;">\</span>
+  bindmap<span style="color: #50a14f;">"\ej -&gt; ^j"</span> reegnz/jq-zsh-plugin
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgedfe919" class="outline-2">
+<h2 id="orgedfe919">Автокомплит</h2>
+<div class="outline-text-2" id="text-orgedfe919">
+<blockquote>
+<p>
+Важно: автокомплит нужно загружать до fzf. Не знаю точно, почему
+</p>
+</blockquote>
+<p>
+Одно из самых частых изменений в моём конфиге - добавление и удаление
+completions. При этом каждый публикует сompletions по разному.
+</p>
+</div>
+<div id="outline-container-org4a3cb97" class="outline-3">
+<h3 id="org4a3cb97">Github</h3>
+<div class="outline-text-3" id="text-org4a3cb97">
+<p>
+Самое простое - если completion лежит на гитхабе. Тогда всё что требуется -
+добавить модификатор <code>as'completion'</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
+ as<span style="color: #50a14f;">"completion"</span> gradle/gradle-completion
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf17eab5" class="outline-3">
+<h3 id="orgf17eab5">Oh My Zsh</h3>
+<div class="outline-text-3" id="text-orgf17eab5">
+<p>
+Хотя я и ругал OMZ за его раздутость, всё таки для некоторых программ там есть
+неплохие комплишены. Благо, zinit имеет специальный синтаксис для загрузки
+плагинов из репозитория OMZ.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
+ as<span style="color: #50a14f;">"completion"</span> OMZP::docker/_docker
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org90e5b79" class="outline-3">
+<h3 id="org90e5b79">Локальный сниппет</h3>
+<div class="outline-text-3" id="text-org90e5b79">
+<p>
+Иногда комплишен предлагают устанавливать из локального файла. Для этого в zinit
+есть специальный модификатор <code>is-snippet</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
+ as<span style="color: #50a14f;">"completion"</span> blockf is-snippet <span style="color: #50a14f;">"</span><span style="color: #b751b6;">$</span><span style="color: #6a1868;">HOME</span><span style="color: #50a14f;">/.dotfiles/zshell/func/_arc"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org696b8b7" class="outline-3">
+<h3 id="org696b8b7">zsh-completions</h3>
+<div class="outline-text-3" id="text-org696b8b7">
+<p>
+У zsh есть и свой джентельменский набор комплишенов, которым можно
+воспользоваться при помощи следующей команды.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
+ atload<span style="color: #50a14f;">"zicompinit; zicdreplay"</span> blockf @zsh-users/zsh-completions
+</pre>
+</div>
+<p>
+Здесь <code>atload</code> делает некоторую zsh магию, которую я не берусь обьяснять в этом
+посте. Просто копипастишь себе в конфиг и наслаждаешься.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaf7995a" class="outline-2">
+<h2 id="orgaf7995a">Заключение</h2>
+<div class="outline-text-2" id="text-orgaf7995a">
+<p>
+На этом, в принципе, всё! Я пробовал разные плагины из списков
+<a href="https://github.com/unixorn/awesome-zsh-plugins">awesome-zsh-plugins</a>, но показал только те, которыми я реально пользуюсь
+каждый день. Надеюсь, какие-то плагины покажутся полезными и тебе.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <a class="telegram-button button" href="https://t.me/izpodshtorki" target="_blank"><i></i><span>Подпишись и обсуждай в Telegram</span></a>
