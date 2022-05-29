@@ -1,4 +1,5 @@
 #+TITLE: Голос из под шторки
+#+OPTIONS: html-preamble:nil
 
 [[file:attachments/izpodshtorki.jpg]]
 
