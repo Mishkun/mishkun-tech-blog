@@ -1,7 +1,7 @@
 #+TITLE: Голос из под шторки
 #+OPTIONS: html-preamble:nil
 
-[[file:attachments/izpodshtorki.jpg]]
+[[file:./attachments/izpodshtorki.jpg]]
 
 #+begin_export html
 <a class="github-button button" href="https://github.com/Mishkun" target="_blank">
