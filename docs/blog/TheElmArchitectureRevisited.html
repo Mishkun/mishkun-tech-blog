@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-19 Tue 19:46 -->
+<!-- 2022-07-19 Tue 19:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Голос из под шторки</title>
+<title>The Elm Architecture в Android проекте: 3 года спустя</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -2732,57 +2732,632 @@ p.verse {
 </style>
 </head>
 <body>
+<div id="preamble" class="status">
+<p class="date">Дата публикации: 19-07-2022</p>
+</div>
 <div id="content" class="content">
-<h1 class="title">Голос из под шторки</h1>
+<h1 class="title">The Elm Architecture в Android проекте: 3 года спустя</h1>
 
-<div id="org5adc7a1" class="figure">
-<p><img src="https://mishkun.xyz/attachments/izpodshtorki.jpg" alt="izpodshtorki.jpg" />
+<div id="org1cefcba" class="figure">
+<p><img src="https://mishkun.xyz/attachments/elmrevisited4.jpg" alt="elmrevisited4.jpg" />
 </p>
 </div>
 
-<a class="github-button button" href="https://github.com/Mishkun" target="_blank">
-<svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
-    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-</svg><span>Подпишись на Github</span>
-</a>
-<a class="telegram-button button" href="https://t.me/themishkun" target="_blank">
-<i></i><span>Напиши мне в Telegram</span>
-</a>
-<br>
-
-
-<dl class="org-dl">
-<dt><a href="blog/Coeffects.html">Коэффекты</a></dt><dd>Коэффекты - очень размытое понятие, используемое в разных контекстах немного
-по-разному. Но для построения чисто функционального приложения они являются
-очень важными. Попробую обьяснить, как я их понимаю сам.</dd>
-<dt><a href="blog/Comments.html">Комментарии в коде</a></dt><dd>Устаревание комментариев в коде - проблема, для которой, на первый взгляд, не
-найти хорошего решения. Попробую накидать свои мысли об этом.</dd>
-<dt><a href="blog/Di-frameworks.html">Решают ли DI-фреймворки больше проблем, чем создают?</a></dt><dd>В моём канале с мемами много шуток про то, что в спорах между Dagger 2 и Koin на
-самом деле побеждают фабрики. Так вот, это не шутки. Я считаю что DI-фреймворки
-в android - это подражание спрингерам, дань моде, следствие хронического
-ООП-клинкода головного мозга и просто переоценённое излишество. Жёсткий наброс
-вкинут, давайте разбираться, правда ли это.</dd>
-<dt><a href="blog/Online-meetups.html">Кому нужны онлайн митапы?</a></dt><dd>Провести митап онлайн гораздо дешевле чем снимать помещение и кормить всех
-пиццулей. На мой взгляд это путь в никуда, а сам я всегда стараюсь
-организовывать митапы оффлайн. Рассказываю, почему.</dd>
-<dt><a href="blog/DSL-over-API.html">Антипаттерн DSL over API</a></dt><dd>Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
-embedded domain specific languages. Писать-то может их и классно, но часто потом
-пользоваться получившимися DSL не очень удобно. В чём же проблема?</dd>
-<dt><a href="blog/Data-oriented-programming.html">Data Oriented Programming</a></dt><dd>Мой обзор на MEAP книги Data Oriented Programming. Неплохая книжечка, в которой
-описаны все плюсы clojure, но о самом языке ни слова.</dd>
-<dt><a href="blog/zshell-setup.html">Мой .zshrc с использованием zi</a></dt><dd>Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
-безграничны: тут тебе и поддержка биндов и виджеты. Жаль, что &ldquo;из коробки&rdquo;
-ничего, кроме автокомплита, не увидишь. Приходится настраивать всё самому,
-дёргая сниппеты из статей добрых людей из интернета. Настало время мне и самому
-написать небольшой гайд по конфигурации zsh.</dd>
-<dt><a href="blog/TheElmArchitectureRevisited.html">The Elm Architecture в Android проекте: 3 года спустя</a></dt><dd>Почти 3 года назад я &ldquo;продал&rdquo; TEA своей команде в Авто.ру. С тех пор наша команда
+<div class="abstract" id="org2567bda">
+<p>
+Почти 3 года назад я &ldquo;продал&rdquo; TEA своей команде в Авто.ру. С тех пор наша команда
 написала 180 TEA-компонентов - от простых экранов с парой кнопок до сложных
 форм-визардов с кучей логики. Тогда одним из ключевых требований дизайна,
 которые я перед собой ставил, был интероп с тогдашним стеком приложения - MVP +
 Clean Architecture, RxJava, Dagger 2. С тех пор я много думал о том, как бы
 выглядела архитектура, если убрать ограничение на совместимость с наследием
-эпохи Clean Architecture. Эта статья - компиляция моих заметок на эту тему.</dd>
-</dl>
+эпохи Clean Architecture. Эта статья - компиляция моих заметок на эту тему.
+</p>
+
+</div>
+
+<div id="outline-container-orgec57d7b" class="outline-2">
+<h2 id="orgec57d7b">Какие проблемы я пытался решить при помощи TEA в 2018</h2>
+<div class="outline-text-2" id="text-orgec57d7b">
+<p>
+Любое архитектурное решение должно подкрепляться проблемами, которое оно
+призвано решить, а не только хотелкой создателя. Некоторые из проблем специфичны для
+Авто.ру, некоторые характерны в целом для Android разработки эпохи CleanArch. Я
+рассказывал об общих проблемах в <a href="https://www.youtube.com/watch?v=FPbUAgyMPAc&amp;t=501s">нескольких</a> <a href="https://www.youtube.com/watch?v=5DWuNTVFaXM&amp;t=2735s">докладах</a>. Давайте я в этом
+разделе расскажу про более специфичные для Авто.ру. Для меня в дизайне новой
+архитектуры были помимо прочих такие проблемы:
+</p>
+</div>
+<div id="outline-container-org8991255" class="outline-3">
+<h3 id="org8991255">Наличие готовой логики в виде интеракторов, репозиториев и прочего Clean</h3>
+<div class="outline-text-3" id="text-org8991255">
+<p>
+Когда не пишешь приложение с нуля, а мигрируешь уже существующее, у тебя связаны
+руки. Тебе нужно иметь возможность взаимодействовать с любым старым кодом, как
+бы странно он не был написан. Поэтому решение должно было быть максимально
+абстрактным и легко расширяемым.
+</p>
+</div>
+<div id="outline-container-orga6835f5" class="outline-4">
+<h4 id="orga6835f5">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-orga6835f5">
+<p>
+Effect-ы в Puerh - это просто data class с параметрами для
+выполнения задачи, но никак не <code>suspend CoroutineScope.(dispatch: Dispatch&lt;Msg&gt;)
+-&gt; Any?</code>, как можно увидеть, например, в фреймворке <a href="https://oolong-kt.org/guide/side-effects/">oolong</a>. Это позволяет
+отделить обьявление эффекта от его реализации. И за цену горки бойлерплейта
+поддержать любую фантазию автора. Такая интерпретация, кстати, убрала надобность
+в такой сущности как <a href="https://guide.elm-lang.org/effects/time.html">Sub</a>. Это, как оказалось, легко выражается через
+EffectHandler без эффектов. Хоть и многословное, но мне это решение кажется
+удачным. Оно позволило развивать архитектуру без лишнего переписывания компонентов.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org16b5c6f" class="outline-3">
+<h3 id="org16b5c6f">Устаревшая ещё тогда RxJava 1</h3>
+<div class="outline-text-3" id="text-org16b5c6f">
+<p>
+Ещё в марте 2018 RxJava 1 достигла последнего релиза. Создатели фреймворка не
+собирались далее её поддерживать. Но RxJava была на всех слоях. Типичное
+приложение того времени состояло из реактивных обёрток над БД и ретрофитом, реактивных
+обёрток над Вьюхами и заставки Windows XP &ldquo;Водопровод&rdquo; из реактивных операторов
+между ними.
+</p>
+
+
+<div id="org1f914a9" class="figure">
+<p><img src="https://mishkun.xyz/attachments/elmrevisited3.jpg" alt="elmrevisited3.jpg" />
+</p>
+</div>
+
+<p>
+Мигрировать такое большое приложение, как Авто.ру, на другую версию Rx - очень
+не простая задача, на которую не хватало технического бюджета.
+</p>
+</div>
+<div id="outline-container-org0776ce0" class="outline-4">
+<h4 id="org0776ce0">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-org0776ce0">
+<p>
+Примитивный дизайн EffectHandler, намеренное избегание изобилующих тогда
+Rx-интерфейсов, ставших позднее модными корутин и их саспендов - всё это был
+задел на &ldquo;Великий Переезд&rdquo;.  Но, как оказалось, тут случился оверкилл. Когда
+пишешь TEA для тебя становится совсем не важен фреймворк асинхронщины. Благодаря
+тому что все эффекты максимально тупы, ты можешь их писать хоть на джавовых
+экзекьюторах. У тебя не будет никакой сложной логики, где ты можешь отстрелить
+себе ногу.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbc1a5ec" class="outline-3">
+<h3 id="orgbc1a5ec">Скудность опыта решения таких масштабных задач</h3>
+<div class="outline-text-3" id="text-orgbc1a5ec">
+
+<div id="org87e6682" class="figure">
+<p><img src="https://mishkun.xyz/attachments/elmrevisited1.jpg" alt="elmrevisited1.jpg" />
+</p>
+</div>
+
+<p>
+Хотя мне и доверили внедрение новой архитектуры, признаюсь, опыта решения
+подобных задач было немного. Я толком не знал, как лучше провязать DI, как быть
+с сохранением стейта. Ну а самое главное - я не мог предугадать направление
+технического развития проекта. Да, я думал, что мы когда-то будем вынуждены
+отказаться от RxJava 1, ну или что в Android команде когда-нибудь сделают свой
+аналог React и заложил эти риски. Но я не мог предсказать, какие технические
+проблемы будут стоять перед проектом в будущем
+</p>
+</div>
+<div id="outline-container-orgfef5e80" class="outline-4">
+<h4 id="orgfef5e80">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-orgfef5e80">
+<p>
+Я откладывал любое решение &ldquo;до последнего&rdquo;. Старался оперировать максимально
+общими интерфейсами, а иногда даже и просто конвенциями. А реализацию давал на откуп
+своим коллегам и надеялся на их фидбек. Это привело к нескольким проблемам. Так,
+например, аналог действия оператора distinct возник как сторонее расширение
+одного из наших разработчиков. А из-за того что я никак не мог определиться с
+тред-сейфети методов у коллег возникали проблемы.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org55eb6c8" class="outline-2">
+<h2 id="org55eb6c8">Проблемы Puerh</h2>
+<div class="outline-text-2" id="text-org55eb6c8">
+<p>
+У <a href="https://github.com/Mishkun/Puerh">Puerh</a> есть некоторые концептуальные проблемы как раз произрастающие из того,
+что на эту архитектуру надо было мигрировать большой проект. Я всё ещё считаю
+Puerh хорошим решением своей задачи. Но если бы я в 2022 году поставил перед
+собой цель адаптировать TEA под свежий проект на Android, я бы попробовал
+сделать немного иначе.
+</p>
+</div>
+<div id="outline-container-org94123af" class="outline-3">
+<h3 id="org94123af">Раздробленность источников правды в Android</h3>
+<div class="outline-text-3" id="text-org94123af">
+<p>
+TEA, как и любая другая UDF архитектура, очень хочет знать всё про всех и
+владеть т.н. источником правды - неделимой истиной, постулатом, из которого
+выводится всё остальное состояние системы, как из пачки аксиом можно вывести всё
+геометрию. И это хорошо соотносится с веб-приложениями, для которых дизайнилось всё
+семейство UDF - MVI, Redux, TEA, &lt;ваш arch-name&gt;. Но как бы мы не желали унести
+всю логику на бекенд, от Android приложения ожидается, что оно при отсутствии
+интернета не превращается в тыкву. А ещё, что открыв его через 10 минут ты
+останешься на том же экране с тем же введённым запросом и состоянием. Это
+значит, что часть стейта нужно хранить не в памяти приложения, a на диске. В
+Puerh предполагалось что часть стейта будет отправляться эффектом
+для сохранения на диск, но это раздрабливает стейт и заставляет вас его
+синхронизировать. Это сложно и этим редко когда есть время заморачиваться.
+</p>
+</div>
+<div id="outline-container-org82a8f43" class="outline-4">
+<h4 id="org82a8f43">Ещё однин пример - сторонние SDK</h4>
+<div class="outline-text-4" id="text-org82a8f43">
+<p>
+Когда работаешь с картой, SDK распознавания чего-то или любым другим сложным UI,
+тебе опять приходится синхронизировать свою копию стейта с оригиналом. Это
+довольно накладно и заставляет писать много кода, который просто заботится о
+том, чтобы у тебя всегда была актуальное состояние для твоей бизнес-логики.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org30baafc" class="outline-3">
+<h3 id="org30baafc">Отсутствие решения для коэффектов</h3>
+<div class="outline-text-3" id="text-org30baafc">
+<p>
+Я ранее <a href="https://mishkun.xyz/blog/Coeffects.html">писал</a> о коэффектах - ситуациях, когда, в отличие от эффектов, нужно
+что-то получить из &ldquo;грязного внешнего мира&rdquo;, нежели что-то туда записать.
+Например, текущую дату для блокировки кнопки распродажи вовремя или случайное
+число для запроса. В каком-то смысле это всё тоже кусочки &ldquo;источника правды&rdquo;. Но
+моя реализация предполагала что эта &ldquo;правда&rdquo; придёт в <code>Msg</code> либо вообще минует
+бизнес-логику и будет добавлена на стороне эффекта. Несмотря на то, что
+ситуация довольно редкая, тем не менее хотелось бы иметь для неё консистентное
+решение и не полагаться ad hoc. Тем более что она перекликается с проблемой выше.
+</p>
+</div>
+</div>
+<div id="outline-container-org0fcdeaa" class="outline-3">
+<h3 id="org0fcdeaa">Сложность state-based навигации</h3>
+<div class="outline-text-3" id="text-org0fcdeaa">
+<p>
+Когда работаешь с TEA, хочется иметь навигацию в виде стейта. Чтобы ты мог
+посмотреть в стейт любого из предыдущих экранов, подвигать его, как тебе удобно.
+Я писал такой стейт для частных случаев многоэкранных юзерстори, но сделать
+обобщенный навигационный фреймворк на основе стейта, интегрируемый с TEA -
+слишком сложная задача для меня. Тем более, что есть множество решений от
+коммьюнити, которые хотелось бы переиспользовать, а не выкидывать их из проекта
+чтобы втащить TEA.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb7f5a32" class="outline-3">
+<h3 id="orgb7f5a32">Декомпозиция</h3>
+<div class="outline-text-3" id="text-orgb7f5a32">
+<p>
+Когда я хочу выделить какую-то общую логику с мессаджами, эффектами и логикой
+вокруг них - я могу завести &ldquo;фичу-донора&rdquo;. Это будет фича, единственное
+предназначение которой - быть донором логики для других фичей. Из-за того, что
+я могу заглянуть внутрь стейта фичи-донора, потрогать её эффекты, я могу
+очень эффективно &ldquo;допиливать напильником&rdquo; фичи-доноры под свои нужды. И это
+очень круто работает, когда это необходимо. Когда же я хочу не вдаваться в
+подробности, чтобы фича-донор просто &ldquo;делала своё дело&rdquo; - это мешает, потому что
+мне всё равно надо заплатить цену необходимого бойлерплейта за это. Особенно эта
+цена становится ощутимой, когда пытаешься сделать всё приложение на едином
+стейте. Обычно экраны на одном уровне навигации между собой слабо связаны, но
+должны быть донорами для фичи верхнего уровня.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec13daf" class="outline-2">
+<h2 id="orgec13daf">Общая проблема - в Android разработке не бывает единого источника правды</h2>
+<div class="outline-text-2" id="text-orgec13daf">
+<p>
+У всех перечисленных проблем легко определить общего виновника - конфликт между
+желанием TEA иметь единый источник правды и жестокой реальностью, где нет
+единства, а есть различные компоненты из которых состоит приложение, каждый из
+которых старается не вылезать за границы своей ответственности.
+</p>
+</div>
+<div id="outline-container-org2e2982c" class="outline-3">
+<h3 id="org2e2982c">Иерархичная структура</h3>
+<div class="outline-text-3" id="text-org2e2982c">
+<p>
+В Puerh нам навязывается иерархичная структура приложения. Это не совсем плохо,
+ведь есть трейд-офф между жесткой иерархичностью и динамизмом плоской структуры.
+В иерархии всегда можно найти проблему, спускаясь по дереву сверху вниз. В такой
+структуре сложнее пропустить <code>Msg</code> или забыть обработать <code>Effect</code>. Однако это
+всё обрастает бюрократией в виде бесконечных wrapping-ов для передачи данных
+вверх-вниз, пока не добредёшь до настоящей бизнес-логики.
+</p>
+</div>
+</div>
+<div id="outline-container-org125aa58" class="outline-3">
+<h3 id="org125aa58">Плоская структура</h3>
+<div class="outline-text-3" id="text-org125aa58">
+<p>
+В Puerh мы в команде долго обсуждали, стоит ли делать EffectHandler иерархичным,
+где верхнеуровневый <code>EffectHandler</code> определяет, как эффекты передать его
+&ldquo;подчинённым&rdquo; или же плоским, где каждому <code>EffectHandler</code> выдаётся все <code>Effect</code>,
+а он лишь отбирает нужные. С одной стороны, в иерархичном подходе мы
+гарантированно обрабатываем все <code>Effects</code>, благодаря exhaustive matching. С
+другой стороны, плоский подход позволяет писать меньше кода и даёт больше
+гибкости. Мы остановились на плоском подходе и мне кажется, что это решение
+позволило больше сэкономить кода, чем бы нанёс пользы exhaustive matching. Ведь
+проблемы, которые в теории решал иерархический подход, ни разу не всплыли в продакшне.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9d693d" class="outline-3">
+<h3 id="orgd9d693d">Тезис - Android приложения по своей природе более плоские</h3>
+<div class="outline-text-3" id="text-orgd9d693d">
+<p>
+Хорошей практикой в мире Android приложений сейчас считается выделять
+компоненты, которые закрывают собой целиком юзер-стори. Как правило, такие
+компоненты выстраиваются в довольно плоскую структуру; единственными
+зависимостями между ними выступают навигационные переходы. Типичный граф экранов в
+приложении можно поделить на подграфы в 2-5 экранов каждый, которые являются
+&ldquo;вещами в себе&rdquo; и требуют минимум внешних зависимостей и внешней координации.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1c64c66" class="outline-2">
+<h2 id="org1c64c66">Коэффекты спешат на помощь</h2>
+<div class="outline-text-2" id="text-org1c64c66">
+<p>
+То, что в реальности не бывает единого источника правды, а только несколько
+разрозненных &ldquo;тематик&rdquo;, в каждой из которых есть единый источник, не должно
+отталкивать от использования UDF. Мне по-прежнему важно иметь логику, описанную
+чистыми функциями. Мне по-прежнему важно обрабатывать входящие <code>Msg</code> строго
+последовательно. Мне по-прежнему важно знать состояние интересующих нас
+источников правды. Нужно лишь придумать удобную абстракцию для описания этих
+источников независимо друг от друга. Для этого я предлагаю обратиться к
+коэффектам.
+</p>
+</div>
+<div id="outline-container-org72e43e4" class="outline-3">
+<h3 id="org72e43e4">Кейс 1: Коэффекты как вычисление аргумента извне</h3>
+<div class="outline-text-3" id="text-org72e43e4">
+<p>
+Изначально коэффектами я заинтересовался как возможное решение досадной
+проблемы - как получить случайное число для использования в своей логике. Логика
+должна быть чистой, поэтому написать <code>getRandom()</code> посреди редьюсера нельзя. В
+<a href="https://guide.elm-lang.org/effects/random.html">гайде по TEA</a> предлагается выдавать некий <code>Effect.RandomInt</code> и ловить ответное
+сообщение. Но это делает обработку изначального сообщения асинхронным и сильно
+усложняет структуру стейта и логики. В похожей архитектуре <a href="https://github.com/pointfreeco/swift-composable-architecture">TCA</a> в редьюсер
+передаётся некоторый <code>Environment</code>, который моментально делает редьюсер грязным и
+заставляет себя мокать в автотестах. В фреймворке <a href="http://day8.github.io/re-frame/">re-frame</a> же все просто - ты
+указываешь некий <code>Coeffect.RandomInt</code> и получаешь случайное число сразу же в
+аргументы для своей функции, описывающей логику.
+</p>
+</div>
+</div>
+<div id="outline-container-org254575e" class="outline-3">
+<h3 id="org254575e">Кейс 2: Стейт внешних SDK тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-org254575e">
+<p>
+Если ты работаешь с SDK карт или авторизации, тебе не нужно постоянно
+синхронизировать состояние точки на карте со своим стейтом. Если описать
+<code>Coeffect.GetPoint</code> то я могу опрашивать карту и получать актуальное состояние в
+каждый обработчик сообщений, который этого потребует. Точно так же можно иметь
+<code>Coeffect.UserState</code> который достаёт текущего юзера для моего обработчика.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd2f1ed2" class="outline-3">
+<h3 id="orgd2f1ed2">Кейс 3: Стейт своего юзер-стори тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-orgd2f1ed2">
+<p>
+Если стейт карт и текущего юзера можно получать из коэффектов, то чем &ldquo;наш&rdquo;
+стейт лучше/хуже? И как вообще определить, какой стейт &ldquo;наш&rdquo;, а какой уже
+&ldquo;общий&rdquo;? Поэтому я предлагаю любой стейт доставать из коэффектов, а записывать
+его эффектами. Это позволит также хранить куски стейта по-разному - в памяти или
+на диске и полностью скрыть это от нашей бизнес-логики.
+</p>
+</div>
+</div>
+<div id="outline-container-org21bf481" class="outline-3">
+<h3 id="org21bf481">Кейс 4: Стейт фичи-донора тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-org21bf481">
+<p>
+Теперь, если тебя не интересует стейт фичи-донора, ты можешь ничего не указывать
+в коэффектах. Но если тебе нужно, то можно указать довольно точно, что конкретно
+требуется достать. Ведь теперь стейт не обязан лежать монолитом, а следовательно
+может быть разделён на приватный и публичный и доставаться разными коэффектами.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1279ab6" class="outline-2">
+<h2 id="org1279ab6">Что получается на практике?</h2>
+<div class="outline-text-2" id="text-org1279ab6">
+
+<div id="org7c80ace" class="figure">
+<p><img src="https://mishkun.xyz/attachments/elmrevisited2.jpg" alt="elmrevisited2.jpg" />
+</p>
+</div>
+
+<p>
+Детали этой архитектуры я ещё прорабатываю на семпловом приложении. Поэтому
+дисклеймер сразу - ссылки на гитхаб, где можно посмотреть всё, нет. Но некоторые
+наброски есть. Сразу извиняюсь за код с корутинами, я всё ещё учусь его
+правильно писать.
+</p>
+</div>
+<div id="outline-container-org1b358b0" class="outline-3">
+<h3 id="org1b358b0">Основные части</h3>
+<div class="outline-text-3" id="text-org1b358b0">
+<p>
+В целом архитектура будет состоять из пяти необходимых компонентов
+</p>
+<ul class="org-ul">
+<li><code>MessageHandler</code> (aka reducer) с чистой бизнес-логикой</li>
+<li><code>CoeffectHandler</code> с обработкой коэффектов</li>
+<li><code>EffectHandler</code> с обработкой эффектов</li>
+<li><code>Selector</code> с подпиской на стейт</li>
+<li><code>Engine</code> который будет связывать всё выше и следить за очередью сообщений</li>
+</ul>
+<p>
+Получается такой классический паттерн <a href="https://blog.ploeh.dk/2020/03/02/impureim-sandwich/">Impureim Sandwich</a>, где у меня сначала есть
+получение входных данных из грязного внешнего мира, чистая обработка нашей
+бизнес-логикой в середине и применение изменений к грязному внешнему миру в
+конце.
+</p>
+</div>
+</div>
+<div id="outline-container-org18d01c7" class="outline-3">
+<h3 id="org18d01c7">MessageHandler</h3>
+<div class="outline-text-3" id="text-org18d01c7">
+<p>
+Классическая сигнатура <code>Msg, State -&gt; State, Set&lt;Effect&gt;</code> упрощается до <code>Msg,
+Coeffects -&gt; Set&lt;Effect&gt;</code>. Теперь стейт &ldquo;такой же как все&rdquo; и теряется в толпе
+эффектов и коэффектов. Однако мне теперь нужна ещё одна функция, выполняющая
+&ldquo;заказ&rdquo; нужных коэффектов - заведём и её: <code>Msg -&gt; Coeffects</code>. Таким образом, вся
+бизнес-логика укладывается в две функции.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">MsgHandler</span>(
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">coeffect</span>: (<span style="color: #986801;">Message</span>) -&gt; <span style="color: #986801;">Coeffects</span>,
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">update</span>: (<span style="color: #986801;">Message</span>, <span style="color: #986801;">Coeffects</span>) -&gt; <span style="color: #986801;">Set&lt;Effect&lt;Message&gt;&gt;</span>
+)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgbb5157c" class="outline-4">
+<h4 id="orgbb5157c">Как представлять Coeffects</h4>
+<div class="outline-text-4" id="text-orgbb5157c">
+<p>
+При достаточной внимательности ты можешь хмыкнуть &ldquo;что же это за <code>Coeffects</code>
+такие?&rdquo;. И будешь прав. Реализация <code>Coeffects</code> это краеугольный камень, который
+важно сделать правильно. Я вдохновлялся <code>re-frame</code> и не нашёл способа лучше чем
+сделать коэффекты гетерогенной мапой. Ты наверняка мог встречать подобную
+структуру данных, если смотрел как устроен <code>CoroutineContext</code>. Если кратко, то
+это мапа, где хранятся разные типы данных. А какой тип у значения - определяется
+ключом. Я решил не пользоваться какой-то <a href="https://github.com/broo2s/typedmap">специальной реализацией</a>, а просто
+сделать тайпалиас к обычной мапе и парочку утилитных функций.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">Coeffect&lt;out</span> <span style="color: #986801;">RESULT&gt;</span>
+<span style="color: #e45649;">typealias</span> <span style="color: #986801;">CoeffectMap&lt;T&gt;</span> = <span style="color: #986801;">Map&lt;Coeffect&lt;T&gt;</span>, <span style="color: #986801;">T&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5da6342" class="outline-4">
+<h4 id="org5da6342">Синтаксический сахар для корректности</h4>
+<div class="outline-text-4" id="text-org5da6342">
+<p>
+Если присмотреться к двум функциям, которые определяют <code>MessageHandler</code>, то
+кажется, что мы теряем type-safety.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">MsgHandler</span>(
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">coeffect</span>: (<span style="color: #986801;">Message</span>) -&gt; <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>,
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">update</span>: (<span style="color: #986801;">Message</span>, <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>) -&gt; <span style="color: #986801;">Set&lt;Effect&lt;Message&gt;&gt;</span>
+)
+</pre>
+</div>
+<p>
+И если для <code>re-frame</code> и Clojure это ок, то в Kotlin мы хотим
+статической типизации. Тут на помощь приходит то, что <code>MsgHandler</code> нужно
+определять сразу весь в одном месте и мы можем замазать динамическую типизацию
+сахарным сиропом. Например, если нам нужен только один коэффект, мы можем
+написать такой factory method:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #9ca0a4;">// </span><span style="color: #9ca0a4;">utils.kt</span>
+<span style="color: #e45649;">inline</span> <span style="color: #e45649;">fun</span> &lt;<span style="color: #e45649;">reified</span> <span style="color: #986801;">CORESULT</span> : <span style="color: #986801;">Any&gt;</span> messageHandler(
+    coeffect: <span style="color: #986801;">Coeffect&lt;CORESULT&gt;</span>,
+    <span style="color: #e45649;">noinline</span> update: (<span style="color: #986801;">Message</span>, <span style="color: #986801;">CORESULT</span>) -&gt; <span style="color: #986801;">Set&lt;Effect&lt;Message&gt;&gt;</span>
+): <span style="color: #986801;">MsgHandler</span> = <span style="color: #986801;">MsgHandler</span>(
+    coeffect = { coeffectMapOf(coeffect) },
+    update = { msg, coeffectMap -&gt; update(msg, coeffectMap.safeGet&lt;<span style="color: #986801;">CORESULT&gt;</span>()) }
+)
+
+<span style="color: #9ca0a4;">// </span><span style="color: #9ca0a4;">logic.kt</span>
+<span style="color: #e45649;">val</span> <span style="color: #6a1868;">messageHandler</span> = messageHandler(<span style="color: #986801;">MyFeature.Coeffects.GetState</span>) { msg: <span style="color: #986801;">Msg</span>, state: <span style="color: #986801;">MyFeatureState</span> -&gt;
+    <span style="color: #9ca0a4;">// </span><span style="color: #9ca0a4;">logic</span>
+}
+</pre>
+</div>
+<p>
+Похожим образом мы можем опрелить factory method для любого числа коэффектов. И
+всё будет достаточно типобезопасно. Если, конечно, не забыть обработать все
+коэффекты.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb800224" class="outline-3">
+<h3 id="orgb800224">EffectHandler</h3>
+<div class="outline-text-3" id="text-orgb800224">
+<p>
+<code>EffectHandler</code> в Puerh был достаточно хорош. Я бы и не вносил в него изменения,
+но всё равно есть несколько идей, как его можно улучшить. Я хочу добавить в него
+suspend-функции, потому что мне кажется что корутины в Android разработке
+надолго - нам-то точно в обозримом будущем не завезут Loom. У меня существуют
+некоторые предубеждения насчёт использования <code>Flow</code> в интерфейсе хендлера,
+хочется использовать более низкоуровневое API. Практика показывает, что этот
+приём отбивает желание пихать логику в <code>EffectHandler</code>. Да и концептуально
+хендлеры нифига не холодные потоки, а ближе к акторам. Пока что кажется, что
+интерфейс <code>EffectHandler</code> может выглядеть как-то так.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">abstract</span> <span style="color: #e45649;">class</span> <span style="color: #986801;">EffectHandler</span>(
+    <span style="color: #e45649;">private</span> <span style="color: #e45649;">val</span> <span style="color: #6a1868;">continuation</span>: <span style="color: #e45649;">suspend</span> <span style="color: #e45649;">fun</span> (<span style="color: #986801;">Effect</span>) -&gt; <span style="color: #986801;">Unit</span>
+) {
+    <span style="color: #e45649;">abstract</span> <span style="color: #e45649;">suspend</span> <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">handleEffect</span>(effects: <span style="color: #986801;">Set&lt;Effect&lt;*&gt;&gt;</span>)
+}
+</pre>
+</div>
+<p>
+Ещё одно отличие в данном случае - хендлер принимает все эффекты сразу вместо
+того чтобы обрабатывать их по отдельности. Это сделано для того чтобы удобнее
+было работать с эффектами изменения стейта и обрабатывать их синхронно и
+транзакционно.
+</p>
+</div>
+<div id="outline-container-org35467cc" class="outline-4">
+<h4 id="org35467cc">EffectHandler как Middleware</h4>
+<div class="outline-text-4" id="text-org35467cc">
+<p>
+По сравнению с Puerh хотелось улучшить эргономику эффектов. Если мы делаем всё
+приложение на эффектах, нам неизбежно захочется выделить низкоуровневые эффекты
+типа <code>HttpGet</code> или <code>SaveState</code> и хендлеры для них.  Для поддержки этого я
+заменил <code>listener: (Message) -&gt; Unit</code> коллбеком <code>continuation</code>.  Теперь
+<code>EffectHandler</code> может делегировать исполнение другим хендлерам, и при желании
+собирать целые саги как в <a href="https://redux-saga.js.org/">redux-saga</a>, когда мы будем ожидать нового эффекта для
+продолжения работы. Ну а отправка сообщений будет осуществляться специальным
+эффектом <code>Dispatch(Message)</code>. Возможно, вместо suspend функции здесь лучше бы
+смотрелся <code>SendChannel&lt;Effect&gt;</code>, но я не уверен, что хочу давать возможность
+хендлерам закрывать канал.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org960359d" class="outline-3">
+<h3 id="org960359d">CoeffectHandler</h3>
+<div class="outline-text-3" id="text-org960359d">
+<p>
+<code>CoeffectHandler</code> мог бы вообще отсутствовать, если принять коэффекты подвидом
+эффектов и переиспользовать сущность <code>EffectHandler</code> для них. Но для
+коэффектов существует контракт что они должны быть синхронными, ведь обработка
+сообщений должна быть последовательной. Поэтому обрастание саспендами тут не
+играет на руку.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">CoeffectHandler</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">handleCoeffect</span>(coeffects: <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>): <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>
+}
+</pre>
+</div>
+<p>
+Контракт <code>CoeffectHandler</code> в таком случае гласит, что он пробегается по мапе
+коэффектов, находит среди ключей интересующие его, исполняет их и подкладывает
+результат в мапу.
+</p>
+</div>
+<div id="outline-container-org787b3b5" class="outline-4">
+<h4 id="org787b3b5">Маппинг</h4>
+<div class="outline-text-4" id="text-org787b3b5">
+<p>
+Одну штуку я подсмотрел в <code>re-frame</code>. Там в процессе обработки сообщение
+пропускается через стек интерцепторов, которые по своей сути похожи на
+интерцепторы в http-библиотеках. Точно так же наша бизнес-логика может
+оперировать высокоуровневыми коэффектами типа <code>LoadState(id)</code> или
+<code>GetDate</code>, которые можно потом пропустить по стеку мапперов и &ldquo;рассахарить&rdquo; в
+низкоуровневые <code>DiskState</code> или <code>GetDateTimeFormatted</code>. Это можно сделать частью
+контракта <code>CoeffectHandler</code>. Теперь можно получать <code>CoeffectMap</code> перед выполнением
+коэффектов и после. Например, чтобы переложить результат <code>GetDateTimeFormatted</code>
+в ячейку коэффекта <code>GetDate</code>, который ожидает <code>MessageHandler</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">CoeffectHandler</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">before</span>(coeffects: <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>): <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">after</span>(coeffects: <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>): <span style="color: #986801;">CoeffectMap&lt;*&gt;</span>
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7d2acfa" class="outline-3">
+<h3 id="org7d2acfa">Selector</h3>
+<div class="outline-text-3" id="text-org7d2acfa">
+<p>
+Так как источников правды несколько, нужна будет сущность, которая будет
+подписываться на коэффекты, собирать из нескольких источников стейт и отдавать
+его в виде <code>ViewState</code> в Compose или другой UI. Интерфейс его должен выглядеть
+так:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">Selector</span>{
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">subscriptions</span>(): <span style="color: #986801;">CoeffectMap</span>
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">update</span>(coeffects: <span style="color: #986801;">CoeffectMap</span>)
+}
+</pre>
+</div>
+<p>
+Если присмотреться, то этот интерфейс чем-то дуален <code>MessageHandler</code>. Не знаю,
+есть ли выкладки теорката под этот случай.
+</p>
+</div>
+</div>
+<div id="outline-container-org84683f9" class="outline-3">
+<h3 id="org84683f9">Engine</h3>
+<div class="outline-text-3" id="text-org84683f9">
+<p>
+<code>Engine</code> должен связывать все компоненты воедино.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">Engine</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">dispatch</span>(message: <span style="color: #986801;">Message</span>)
+
+    <span style="color: #e45649;">fun</span> <span style="color: #9ca0a4;">/*</span><span style="color: #9ca0a4;">un*/</span>registerEffectHandler(effectHandler: <span style="color: #986801;">EffectHandler</span>)
+    <span style="color: #e45649;">fun</span> <span style="color: #9ca0a4;">/*</span><span style="color: #9ca0a4;">un*/</span>registerCoeffectHandler(coeffectHandler: <span style="color: #986801;">CoeffectHandler</span>)
+    <span style="color: #e45649;">fun</span> <span style="color: #9ca0a4;">/*</span><span style="color: #9ca0a4;">un*/</span>registerMessageHandler(messageHandler: <span style="color: #986801;">MessageHandler</span>)
+    <span style="color: #e45649;">fun</span> <span style="color: #9ca0a4;">/*</span><span style="color: #9ca0a4;">un*/</span>registerSelector(selector: <span style="color: #986801;">Selector</span>)
+
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">dispose</span>()
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-org1083fea" class="outline-4">
+<h4 id="org1083fea">DI и навигация</h4>
+<div class="outline-text-4" id="text-org1083fea">
+<p>
+Зачем мне динамическая регистрация компонентов? Меня очень вдохновил
+концепт <code>CompositionLocal</code> в compose. Идея о том что в зависимости позиции в
+дереве одни и те же мессаджи могут обрабатываться по-разному сулит классное
+переиспользование UI-компонентов. Кроме того мне очень нравится <a href="https://arkivanov.github.io/Decompose/">Decompose</a> и я
+надеюсь что с ним можно будет интегрировать своё решение, чтобы не
+переизобретать навигацию. В моих планах каждый такой decompose-компонент будет
+просто регистрировать/дерегистрировать хендлеры в результате навигации и
+подписывать Selector на изменения стейта.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc33e1b0" class="outline-2">
+<h2 id="orgc33e1b0">Request For Comments</h2>
+<div class="outline-text-2" id="text-orgc33e1b0">
+<p>
+Эта статья лишь компиляция моих размышлений на тему интеграции коэффектов в TEA.
+Приблизительный план, как это должно выглядеть. Мне было бы очень интересно
+узнать, где этот план хромает и где можно его улучшить. Приходи в канал, находи
+этот пост и присоединяйся к обсуждению. Особенно меня интересуют критика новых
+<code>EffectHandler</code> и возможные подводные камни реализации <code>Engine</code>.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <a class="telegram-button button" href="https://t.me/izpodshtorki" target="_blank"><i></i><span>Подпишись и обсуждай в Telegram</span></a>
