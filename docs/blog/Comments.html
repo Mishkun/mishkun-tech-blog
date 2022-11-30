@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-29 Sun 23:15 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Комментарии в коде</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2737,7 +2744,7 @@ p.verse {
 </div>
 <div id="content" class="content">
 <h1 class="title">Комментарии в коде</h1>
-<div class="abstract" id="orgaab28a8">
+<div class="abstract" id="org0f6e3e6">
 <p>
 Устаревание комментариев в коде - проблема, для которой, на первый взгляд, не
 найти хорошего решения. Попробую накидать свои мысли об этом.
@@ -2745,9 +2752,9 @@ p.verse {
 
 </div>
 
-<div id="outline-container-org21df9f3" class="outline-2">
-<h2 id="org21df9f3">Устаревание комментариев в коде</h2>
-<div class="outline-text-2" id="text-org21df9f3">
+<div id="outline-container-org2298ac5" class="outline-2">
+<h2 id="org2298ac5">Устаревание комментариев в коде</h2>
+<div class="outline-text-2" id="text-org2298ac5">
 <p>
 Все знают что комментарии в коде это &ldquo;костыль&rdquo;. В одном случае их используют как
 `git stash` курильщика. В других - для того чтобы заткнуть дыры в выразительности
@@ -2756,9 +2763,9 @@ p.verse {
 поделать, то для третьего просто нет пока ещё решения.
 </p>
 </div>
-<div id="outline-container-org0d6c078" class="outline-3">
-<h3 id="org0d6c078">Как устаревают комментарии?</h3>
-<div class="outline-text-3" id="text-org0d6c078">
+<div id="outline-container-org2f7232f" class="outline-3">
+<h3 id="org2f7232f">Как устаревают комментарии?</h3>
+<div class="outline-text-3" id="text-org2f7232f">
 <p>
 Обычно история комментария проста и печальна: код написали, открыли ПР. После
 втыка на ревью решили раскрыть какую-то неочевидность, добавив комментарий. Потом
@@ -2768,9 +2775,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-orgbaf73f1" class="outline-3">
-<h3 id="orgbaf73f1">Как заставить разработчика править комментарий?</h3>
-<div class="outline-text-3" id="text-orgbaf73f1">
+<div id="outline-container-org3442ad4" class="outline-3">
+<h3 id="org3442ad4">Как заставить разработчика править комментарий?</h3>
+<div class="outline-text-3" id="text-org3442ad4">
 <p>
 Можно обязать всех смотреть актуальность комментариев на код-ревью. Многие
 ограничиваются этим решением и больше к вопросу не возвращаются. Но я, например,
@@ -2781,9 +2788,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1871f5" class="outline-3">
-<h3 id="orgb1871f5">Анализ комментариев</h3>
-<div class="outline-text-3" id="text-orgb1871f5">
+<div id="outline-container-orgb26f5b4" class="outline-3">
+<h3 id="orgb26f5b4">Анализ комментариев</h3>
+<div class="outline-text-3" id="text-orgb26f5b4">
 <p>
 Чтобы приготовить антиутопическую реальность, где люди ублажают машины за лайки на
 ПР-ы, нужно придумать, как проверять комментарии на актуальность. Один из
@@ -2796,9 +2803,9 @@ p.verse {
 </div>
 </div>
 </div>
-<div id="outline-container-orgc1b0dc3" class="outline-2">
-<h2 id="orgc1b0dc3">Reverse Github Co-pilot</h2>
-<div class="outline-text-2" id="text-orgc1b0dc3">
+<div id="outline-container-org1d0da72" class="outline-2">
+<h2 id="org1d0da72">Reverse Github Co-pilot</h2>
+<div class="outline-text-2" id="text-org1d0da72">
 <p>
 Не совсем про устаревание комментариев, но тоже по теме. Давненько мечтаю про
 обратный гитхабовскому автокомплит. Хочу чтобы он по коду мог сгенерировать
@@ -2807,9 +2814,9 @@ p.verse {
 будет понимать код лучше крепкого миддла.
 </p>
 </div>
-<div id="outline-container-orgcff4020" class="outline-3">
-<h3 id="orgcff4020">Проиндексируй мне кодовую базу</h3>
-<div class="outline-text-3" id="text-orgcff4020">
+<div id="outline-container-orgef0eb0a" class="outline-3">
+<h3 id="orgef0eb0a">Проиндексируй мне кодовую базу</h3>
+<div class="outline-text-3" id="text-orgef0eb0a">
 <p>
 У меня немного другое желание - хочу прогнать этот Reverse Github Co-pilot по
 кодовой базе и построить индекс каким-нибудь поисковым движком. Чтобы я мог в

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-29 Sun 23:15 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Решают ли DI-фреймворки больше проблем, чем создают?</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2738,12 +2745,12 @@ p.verse {
 <div id="content" class="content">
 <h1 class="title">Решают ли DI-фреймворки больше проблем, чем создают?</h1>
 
-<div id="orgd2391d2" class="figure">
+<div id="orge1b0d12" class="figure">
 <p><img src="https://mishkun.xyz/attachments/diframeworks1.jpg" alt="diframeworks1.jpg" />
 </p>
 </div>
 
-<div class="abstract" id="orgfa62f34">
+<div class="abstract" id="org19751f9">
 <p>
 В моём канале с мемами много шуток про то, что в спорах между Dagger 2 и Koin на
 самом деле побеждают фабрики. Так вот, это не шутки. Я считаю что DI-фреймворки
@@ -2754,9 +2761,9 @@ p.verse {
 
 </div>
 
-<div id="outline-container-org6ac35b7" class="outline-2">
-<h2 id="org6ac35b7">Что вообще решают DI-фреймворки?</h2>
-<div class="outline-text-2" id="text-org6ac35b7">
+<div id="outline-container-orgb5dc0e1" class="outline-2">
+<h2 id="orgb5dc0e1">Что вообще решают DI-фреймворки?</h2>
+<div class="outline-text-2" id="text-orgb5dc0e1">
 <p>
 DI фреймворки в основном решают очень простую проблему - как написать код,
 который собирает объект из зависимостей. Это очень простой код, который легко
@@ -2768,9 +2775,9 @@ DI фреймворки в основном решают очень просту
 </p>
 </div>
 </div>
-<div id="outline-container-org5fbd4b5" class="outline-2">
-<h2 id="org5fbd4b5">Что если вы не такой устойчивый к рутине?</h2>
-<div class="outline-text-2" id="text-org5fbd4b5">
+<div id="outline-container-org9bb1bbb" class="outline-2">
+<h2 id="org9bb1bbb">Что если вы не такой устойчивый к рутине?</h2>
+<div class="outline-text-2" id="text-org9bb1bbb">
 <p>
 Ладно, допустим, рутина написания фабрик для вас - это проблема. Настолько
 большая, что вы не представляете, что можете отказаться от DI-фреймворка и
@@ -2791,9 +2798,9 @@ Koin я начал изучать на более сознательном эт�
 </p>
 </div>
 </div>
-<div id="outline-container-org89dba5c" class="outline-2">
-<h2 id="org89dba5c">Какие проблемы не решают DI-фреймворки?</h2>
-<div class="outline-text-2" id="text-org89dba5c">
+<div id="outline-container-orgc36defa" class="outline-2">
+<h2 id="orgc36defa">Какие проблемы не решают DI-фреймворки?</h2>
+<div class="outline-text-2" id="text-orgc36defa">
 <p>
 При этом мы расплачиваемся более высоким порогом входа только за решение
 тривиальной задачи &ldquo;собери из спичек домик&rdquo;. На более сложные, смежные с DI вопросы
@@ -2812,9 +2819,9 @@ medium rare. Эти проблемы приходится решать само�
 </p>
 </div>
 </div>
-<div id="outline-container-orgb3cc5e6" class="outline-2">
-<h2 id="orgb3cc5e6">А как же Hilt?</h2>
-<div class="outline-text-2" id="text-orgb3cc5e6">
+<div id="outline-container-org0c1ca40" class="outline-2">
+<h2 id="org0c1ca40">А как же Hilt?</h2>
+<div class="outline-text-2" id="text-org0c1ca40">
 <p>
 Есть же Hilt, скажите вы. Моё мнение в том, что Hilt - отстой и тому есть
 несколько причин. Да, Hilt вроде бы упрощает работу с Dagger, нацелен на
@@ -2831,9 +2838,9 @@ medium rare. Эти проблемы приходится решать само�
 </p>
 </div>
 </div>
-<div id="outline-container-org796cf61" class="outline-2">
-<h2 id="org796cf61">Но так удобнее же тем кто знаком с Dagger</h2>
-<div class="outline-text-2" id="text-org796cf61">
+<div id="outline-container-org5918989" class="outline-2">
+<h2 id="org5918989">Но так удобнее же тем кто знаком с Dagger</h2>
+<div class="outline-text-2" id="text-org5918989">
 <p>
 Может быть у них были мысли что кто-то захочет мигрировать с Dagger на Hilt. Но,
 как правило, если уж вы замазались в Dagger, то у вас уже есть свой вагон
@@ -2848,9 +2855,9 @@ DI-фреймворк?
 </p>
 </div>
 </div>
-<div id="outline-container-orgebd1649" class="outline-2">
-<h2 id="orgebd1649">В конце победили фабрики</h2>
-<div class="outline-text-2" id="text-orgebd1649">
+<div id="outline-container-org519d7f4" class="outline-2">
+<h2 id="org519d7f4">В конце победили фабрики</h2>
+<div class="outline-text-2" id="text-org519d7f4">
 <p>
 Поэтому я склоняюсь к тому что те DI фреймворки, что есть мейнстрим android
 разработке лучше бы выкинуть к херам и заменить на фабрики. Может, написать пару

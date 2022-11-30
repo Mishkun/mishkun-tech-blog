@@ -1,0 +1,155 @@
+#+title: Ладонь против Ножа: Ручной DI вместо Dagger
+#+Date: 30-11-2022
+
+[[file:../attachments/handdi.png]]
+
+#+begin_abstract
+Год назад я написал [[file:Di-frameworks.org][пост]] про то что DI фреймворки не решают проблемы, а заменяют
+их новыми. На что многие мне ответили "а как же так? ты что, пишешь зависимости
+рУкАмИ? Ты что, Dagger пишет код за меня!". Ну что ж, давайте я в новом посте
+покажу тебе, мой сомневающийся в силе фабрик читатель, как при помощи
+by-делегации в Kotlin можно писать кода не больше чем при использовании Dagger.
+#+end_abstract
+
+* Покажите мне код!
+После прошлой статьи меня упрекнули в том, что размышления есть, а кода нет.
+Поэтому этот пост я начну сразу с того что вкину [[https://github.com/Mishkun/android-multimodule-di-example/pull/1][пример]]. За основу я взял семпл
+Дениса Загаевского - его [[https://www.youtube.com/watch?v=COzmONYAY3U][доклад]] на Мобиус 2021 я считаю сейчас самым актуальным
+руководством по Dagger на момент написания этого поста. Для меня важным было что
+в семпле есть многомодульность и разделение на api/implementation.
+* Знакомьтесь, фабрика
+Если же код читать лень - давай разбираться на кофемашинах. Вот смотри, это -
+фабрика. Она может собирать для меня некоторую зависимость ~CoffeeMachine~.
+#+begin_src kotlin
+class Factory {
+    fun buildMyCoffeeMachine(): CoffeeMachine
+}
+#+end_src
+** Добавляем зависимости зависимости
+Но что делать, если моя кофемашина сама имеет какую-то зависимость? Например,
+некоторый ~CoffeeConfig~? Я могу заставить того, кому нужна зависимость,
+предоставить нам его. В терминах Dagger это называется сложным словом
+AssistedInject. В терминах ручного DI это называется "добавить параметр".
+#+begin_src kotlin
+class Factory {
+    fun buildMyCoffeeMachine(config: CoffeeConfig): CoffeeMachine
+}
+#+end_src
+** Добавляем зависимости фабрики
+Ладно, конфиг ещё можно как часть API как-то переложить на вызывающего метод. Но
+если моей кофемашине нужен какой-нибудь ~WaterSupply~, его точно не нужно
+таскать в каждое место, где требуется кофемашина. Тогда я могу передать
+~WaterSupply~ в мою фабрику.
+#+begin_src kotlin
+class Factory(val supply: WaterSupply) {
+    fun buildMyCoffeeMachine(config: CoffeeConfig): CoffeeMachine
+}
+#+end_src
+** Соединяем две фабрики
+Теперь давай представим что этот ~WaterSupply~ собирается в свою очередь
+какой-то другой фабрикой. Как мне соединить две фабрики между собой и не
+помереть под горами бойлерплейта?
+#+begin_src kotlin
+class WaterFactory {
+    fun buildWaterSupply(): WaterSupply
+}
+class CoffeeFactory(val supply: WaterSupply) {
+    fun buildMyCoffeeMachine(config: CoffeeConfig): CoffeeMachine
+}
+#+end_src
+Обычно здесь авторам статей про DI надоедать играть с фабриками и они начинают
+расчехлять свой DI фреймворк. Пример же с фабриками расценивается больше как
+пузырьковая сортировка при изучении алгоритмов - просто, понятно, но в продакшне
+не используется. Но достаточно всего лишь знать одну фичу Kotlin и бойлерплейт
+уходит сам собой
+* Убираем бойлерплейт
+Итак, перед тем как раскрыть секрет пути Открытой Ладони в DI, давай немного
+отрефакторим фабрику кофемашин. Я выделил ей интерфейс Dependencies, чтобы не
+таскать аргументы раз за разом.
+#+begin_src kotlin
+class CoffeeFactory(val deps: Dependencies) {
+    fun buildMyCoffeeMachine(config: CoffeeConfig): CoffeeMachine
+    interface Dependencies {
+        val waterSupply: WaterSupply
+    }
+}
+#+end_src
+Теперь ~WaterFactory~ достаточно заимплементить этот интерфейс и всё в шоколаде.
+#+begin_src kotlin
+class WaterFactory : CoffeeFactory.Dependencies {
+    override val waterSupply: WaterSupply
+}
+
+val coffeeMachine = CoffeeFactory(WaterFactory()).buildMyCoffeeMachine(config)
+#+end_src
+** Щепотка делегации
+Пока код я только добавлял, хотя глава называется "убираем бойлерплейт". Но на
+самом деле я его перепрячу "под ковёр". До этого я не показывал конструктор
+~CoffeeMachine~. А там вот что!
+#+begin_src kotlin
+class CoffeeMachine(val config: CoffeeConfig, val deps: Dependencies) {
+    interface Dependencies {
+        val waterSupply: WaterSupply
+    }
+}
+#+end_src
+Ха-ха, вот это я тебя подколол, да? Отрефакторил код, ещё до того как показал
+его сниппет. Но теперь, когда карты на столе, маски сняты, и я застал тебя
+врасплох, позволь показать тебе ещё один трюк с рефакторингом "задним числом".
+Взгляни ещё раз на фабрику кофемашин.
+#+begin_src kotlin
+class CoffeeFactory(
+    val deps: Dependencies
+): CoffeeMachine.Dependencies,
+   Dependencies by deps {
+    fun buildMyCoffeeMachine(config: CoffeeConfig): CoffeeMachine =
+        CoffeeMachine(config, this)
+    interface Dependencies {
+        val waterSupply: WaterSupply
+    }
+}
+#+end_src
+Ха, теперь я могу просто передавать ~this~ в качестве зависимостей и всё
+работает! А благодаря трюку с ~by~ делегацией описывать зависимости, которые я
+взял из внешнего скоупа - не нужно, они уже подходят под интерфейс.
+* Но как же фича X из Dagger?
+Я упоминал, что AssistedInject - это просто передача параметра в метод. Да,
+внимательный глаз мог заметить что для этого пришлось изменить конструктор. Но
+мне кажется что это нормальный трейд-офф. Почти точно так же просто
+покрывается большинство фич Dagger.
+** Named
+Так как Dagger завязан на типы возвращаемого значения, чтобы разделить две
+зависимости одного типа, ему пришлось вводить Named. А теперь, следите за
+руками:
+#+begin_src kotlin
+interface Dependencies {
+    val waterSupplyA: WaterSupply
+    val waterSupplyB: WaterSupply
+}
+#+end_src
+Вау, две зависимости одного типа, без аннотаций, как мне это удаётся?
+** Scope
+Помню как в своё время очень долго пытался разобраться, что же делают скоупы в
+Dagger. А вот что они делают в ручном DI:
+#+begin_src kotlin
+class MyFactory: MyDependencies {
+    // No scope
+    override val dependencyA get() = DependencyA()
+    // Scoped to MyFactory
+    override val dependencyB = DependencyB()
+}
+#+end_src
+Закрыть скоуп можно, просто потеряв ссылку на ~MyFactory~, не благодари.
+** Provider
+Если какая-то зависимость нужна не прям щас, а как-нибудь потом, то из
+предыдущего примера не сложно догадаться, что это легко решает ~by lazy~.
+#+begin_src kotlin
+class MyFactory: MyDependencies {
+    override val someLazyDep by lazy { SomeLazyDep() }
+}
+#+end_src
+* И то и то
+Надеюсь после прочтения этой статьи тебе стало писать код руками не так страшно.
+Наверное стоит ещё разок померить сколько занимают kaptGenerateStubs у тебя на
+проекте, сколько человекочасов было закопано в изучение Dagger и работу над его
+экосистемой. И спросить себя: оно того стоило? Я считаю, что нет.

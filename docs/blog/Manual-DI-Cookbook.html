@@ -6,7 +6,7 @@
 <!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Мой .zshrc с использованием zinit</title>
+<title>Ладонь против Ножа: Ручной DI вместо Dagger</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -2740,315 +2740,261 @@ p.verse {
 </head>
 <body>
 <div id="preamble" class="status">
-<p class="date">Дата публикации: 29-05-2022</p>
+<p class="date">Дата публикации: 30-11-2022</p>
 </div>
 <div id="content" class="content">
-<h1 class="title">Мой .zshrc с использованием zinit</h1>
+<h1 class="title">Ладонь против Ножа: Ручной DI вместо Dagger</h1>
 
-<div id="org9d24b12" class="figure">
-<p><img src="https://mishkun.xyz/attachments/zshell_hero.png" alt="zshell_hero.png" />
+<div id="orgd496c19" class="figure">
+<p><img src="https://mishkun.xyz/attachments/handdi.png" alt="handdi.png" />
 </p>
-</div>
-
-<div class="abstract" id="org84d4c2e">
-<p>
-Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
-безграничны: тут тебе и поддержка биндов и виджеты. Жаль, что &ldquo;из коробки&rdquo;
-ничего, кроме автокомплита, не увидишь. Приходится настраивать всё самому,
-дёргая сниппеты из статей добрых людей из интернета. Настало время мне и самому
-написать небольшой гайд по конфигурации zsh.
-</p>
-
 </div>
 
-<div id="outline-container-org6bb754f" class="outline-2">
-<h2 id="org6bb754f">Почему не Oh-my-zsh или Pretzo?</h2>
-<div class="outline-text-2" id="text-org6bb754f">
+<div class="abstract" id="orgaafcdd1">
 <p>
-Если у тебя стоит сборка oh-my-zsh или pretzo, сноси её. Это помойки из
-скриптов, среди которых приблизительно 99% - это алиасы и темы. Zsh способна
-предложить гораздо больше, а ради кучки алиасов не вижу причин <a href="https://github.com/romkatv/zsh-bench#premade-configs">замедлять</a> свой
-конфиг, тем более что все пакетные менеджеры умеют ставить необходимые вам куски
-OMZ и Pretzo, если вам что-то особенно понравилось. Лично я не перенес в итоге
-ни одного скрипта, кроме автокомплита для Docker.
+Год назад я написал <a href="Di-frameworks.html">пост</a> про то что DI фреймворки не решают проблемы, а заменяют
+их новыми. На что многие мне ответили &ldquo;а как же так? ты что, пишешь зависимости
+рУкАмИ? Ты что, Dagger пишет код за меня!&rdquo;. Ну что ж, давайте я в новом посте
+покажу тебе, мой сомневающийся в силе фабрик читатель, как при помощи
+by-делегации в Kotlin можно писать кода не больше чем при использовании Dagger.
 </p>
-</div>
-</div>
-<div id="outline-container-org1ab4594" class="outline-2">
-<h2 id="org1ab4594">Плагины в zshell</h2>
-<div class="outline-text-2" id="text-org1ab4594">
-<p>
-Вообще, строго говоря, в zshell нет такого понятия, как плагин. Это просто .zsh
-файлы, которые вы включаете в свой <code>.zshrc</code> файл командой <code>source</code>. При желании
-можно в пару строк сделать подобие пакетного менеджера, который просто будет
-скачивать .zsh файлы по url делать source. Пример такого аскетичного конфига
-есть <a href="https://www.youtube.com/watch?v=bTLYiNvRIVI">на канале Chris@Machine</a>, если тебе интересно разобраться в zsh ещё глубже.
-Я же использую готовый пакетный менджер.
-</p>
-</div>
-</div>
-<div id="outline-container-org4b8c000" class="outline-2">
-<h2 id="org4b8c000">Конфигурация с пакетным менеджером zinit</h2>
-<div class="outline-text-2" id="text-org4b8c000">
-<p>
-Первый шаг к нормальному конфигу zshell - установка пакетного менеджера. Как я
-указал выше, накидать базовый пакетный менеджер достаточно просто. Поэтому
-готовых решений довольно много, сравнение самых известных из них можно
-посмотреть <a href="https://github.com/romkatv/zsh-bench#plugin-managers">здесь</a>. Мой выбор пал на <a href="https://github.com/zdharma-continuum/zinit">zinit</a>, как достаточно популярный, гибкий и
-быстрый. После того как выполнили шаги из introduction, наш <code>.zshrc</code> файл должен
-начинаться с 3 строчек, которые сурсят .zsh файл менеджера, загружают функцию
-<code>zinit</code>, с помощью которой мы будем подключать плагины и добавляет файлы
-автокомплита для неё в zsh.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a626a4;">source</span> <span style="color: #50a14f;">"</span><span style="color: #b751b6;">$</span><span style="color: #6a1868;">HOME</span><span style="color: #50a14f;">/.local/share/zinit/zinit.git/zinit.zsh"</span>
-<span style="color: #a626a4;">autoload</span> -Uz _zinit
-<span style="color: #4078f2;">(</span><span style="color: #a626a4;">(</span> $<span style="color: #50a14f;">{</span>+_comps<span style="color: #50a14f;">}</span> <span style="color: #a626a4;">)</span><span style="color: #4078f2;">)</span> &amp;&amp; <span style="color: #6a1868;">_comps</span><span style="color: #4078f2;">[</span>zinit<span style="color: #4078f2;">]</span>=_zinit
-</pre>
-</div>
-</div>
-<div id="outline-container-orgd7968a4" class="outline-3">
-<h3 id="orgd7968a4">Простейший пример - prompt</h3>
-<div class="outline-text-3" id="text-orgd7968a4">
-<p>
-Как известно, все любители командной строки обожают перегруженные промпты с
-кучей ненужной информации, чтобы почувствовать себя <code>L33T H4CK3rS</code>. Пример
-установки самого выпендрёжного из них - powerlevel10k - есть <a href="https://github.com/zdharma-continuum/zinit#plugins-and-snippets">в документации
-zinit</a>. Я предпочитаю чуть более умеренную <a href="https://github.com/geometry-zsh/geometry">geometry</a>. На её примере заодно и
-разберу основы синтаксиса zinit. Zinit в простом случае принимает в качестве
-координат плагина путь к репозиторию на github в формате <code>&lt;username&gt;/&lt;repo&gt;</code>.
-Другие источники, конечно же, тоже поддерживаются. Zinit сам скачивает
-репозиторий и следит за его обновлением.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit geometry-zsh/geometry
-</pre>
-</div>
-<p>
-Теперь промпт должен смениться на минималистичный треугольник:
-<img src="https://mishkun.xyz/attachments/zshell1.png" alt="zshell1.png" />
-</p>
-</div>
-</div>
-<div id="outline-container-org8ac6633" class="outline-3">
-<h3 id="org8ac6633">Модификаторы</h3>
-<div class="outline-text-3" id="text-org8ac6633">
-<p>
-Кроме имени репозитория ещё принимается список модификаторов, которые так или
-иначе влияют на процесс загрузки плагина. Для того чтобы применить модификаторы
-есть два вида синтаксиса на выбор: легаси ice и новенький for. Два модификатора
-придётся лепить почти на все плагины - это <code>lucid</code>, который убирает спам
-отладочными сообщениями и <code>light-mode</code>, который выключает некоторые фичи zinit
-типа статистики использования плагина, чтобы грузиться как можно быстрее.
-Применю их, используя for синтаксис.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit lucid light-mode for <span style="color: #50a14f;">\</span>
-  geometry-zsh/geometry
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org2244ea6" class="outline-2">
-<h2 id="org2244ea6">Fzf - лучший друг zsh</h2>
-<div class="outline-text-2" id="text-org2244ea6">
-<p>
-В терминале часто приходится выбирать какие-то опции. Варианты автокомплита,
-элементы истории, файлы в директории. Справляться со всем этим помогает fzf -
-библиотека для fuzzy search. К примеру, так можно интерактивно выбрать файл по
-сочетанию клавиш <code>ctrl+t</code>.
-<img src="https://mishkun.xyz/attachments/zshell2.gif" alt="zshell2.gif" />
-</p>
-</div>
-<div id="outline-container-orgd4b9905" class="outline-3">
-<h3 id="orgd4b9905">Установка</h3>
-<div class="outline-text-3" id="text-orgd4b9905">
-<p>
-Fzf имеет небольшие тонкости в установке, поэтому в zinit есть специальная
-конструкция <code>pack</code>, которая позволяет переиспользовать скрипты установки
-популярных плагинов.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit pack<span style="color: #50a14f;">"default+keys"</span> for fzf
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org6b713bb" class="outline-3">
-<h3 id="org6b713bb">Как включить fzf везде</h3>
-<div class="outline-text-3" id="text-org6b713bb">
-<p>
-Для того, чтобы заработали сочетания клавиш <code>ctrl+t</code> для выбора файла из текущей
-директории и <code>ctrl+r</code> для интерактивного поиска по истории, нужно засурсить
-файл, находящийся по пути <code>shell/key-bindings.zsh</code> в репозитории fzf. В zinit
-отдельные файлы можны выбирать модификатором <code>pick'&lt;путь до zsh файла от
-корня&gt;'</code>.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid for pick<span style="color: #50a14f;">'shell/key-bindings.zsh'</span> junegunn/fzf
-</pre>
-</div>
-<p>
-Во многих туториалах, в том числе и в документации fzf, можно встретить ещё и
-предложение включить <code>shell/completions.zsh</code> чтобы использовать fzf для
-автокомплита. Однако для меня лучше подошёл плагин <a href="https://github.com/Aloxaf/fzf-tab">fzf-tab</a>, который лучше
-интегрируется со стандартным автокомплитом из zshell.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid has<span style="color: #50a14f;">'fzf'</span> for Aloxaf/fzf-tab
-</pre>
+
 </div>
 
-<div id="orgcbc5431" class="figure">
-<p><img src="https://mishkun.xyz/attachments/zshell3.png" alt="zshell3.png" />
+<div id="outline-container-orga3c1319" class="outline-2">
+<h2 id="orga3c1319">Покажите мне код!</h2>
+<div class="outline-text-2" id="text-orga3c1319">
+<p>
+После прошлой статьи меня упрекнули в том, что размышления есть, а кода нет.
+Поэтому этот пост я начну сразу с того что вкину <a href="https://github.com/Mishkun/android-multimodule-di-example/pull/1">пример</a>. За основу я взял семпл
+Дениса Загаевского - его <a href="https://www.youtube.com/watch?v=COzmONYAY3U">доклад</a> на Мобиус 2021 я считаю сейчас самым актуальным
+руководством по Dagger на момент написания этого поста. Для меня важным было что
+в семпле есть многомодульность и разделение на api/implementation.
 </p>
 </div>
 </div>
-</div>
-<div id="outline-container-org1c7d7a7" class="outline-3">
-<h3 id="org1c7d7a7">Избранные директории</h3>
-<div class="outline-text-3" id="text-org1c7d7a7">
+<div id="outline-container-org5552eee" class="outline-2">
+<h2 id="org5552eee">Знакомьтесь, фабрика</h2>
+<div class="outline-text-2" id="text-org5552eee">
 <p>
-У меня много проектов, между которыми приходится часто переключаться. Поэтому я
-себе поставил плагин для избранных директорий <a href="https://github.com/pabloariasal/zfm">zfm</a>. По сочетанию <code>ctrl+p</code>
-открывается fzf с выбором моих избранных директорий.
+Если же код читать лень - давай разбираться на кофемашинах. Вот смотри, это -
+фабрика. Она может собирать для меня некоторую зависимость <code>CoffeeMachine</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">zinit wait<span style="color: #50a14f;">'0a'</span> lucid light-mode for <span style="color: #50a14f;">\</span>
-   pabloariasal/zfm
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">Factory</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(): <span style="color: #986801;">CoffeeMachine</span>
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd49c5be" class="outline-3">
+<h3 id="orgd49c5be">Добавляем зависимости зависимости</h3>
+<div class="outline-text-3" id="text-orgd49c5be">
+<p>
+Но что делать, если моя кофемашина сама имеет какую-то зависимость? Например,
+некоторый <code>CoffeeConfig</code>? Я могу заставить того, кому нужна зависимость,
+предоставить нам его. В терминах Dagger это называется сложным словом
+AssistedInject. В терминах ручного DI это называется &ldquo;добавить параметр&rdquo;.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">Factory</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(config: <span style="color: #986801;">CoffeeConfig</span>): <span style="color: #986801;">CoffeeMachine</span>
+}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org97e5fdb" class="outline-3">
-<h3 id="org97e5fdb">Интерактивный справочник</h3>
-<div class="outline-text-3" id="text-org97e5fdb">
+<div id="outline-container-org4085c9b" class="outline-3">
+<h3 id="org4085c9b">Добавляем зависимости фабрики</h3>
+<div class="outline-text-3" id="text-org4085c9b">
 <p>
-Иногда хочется иметь что-то вроде <code>Cmd+Shift+A</code> в Intellij или Command Palette в
-VS Code, чтобы забить &ldquo;get first line of a file&rdquo; и не вспоминать что там за
-команда head и какие у неё команды. Для этого существует <a href="https://github.com/denisidoro/navi">navi</a> - интерактивный
-cheatsheet. Ставится он чуть более сложно - нужно выполнить eval после
-загрузки скрипта. Это делается модификатором <code>atload</code>.
+Ладно, конфиг ещё можно как часть API как-то переложить на вызывающего метод. Но
+если моей кофемашине нужен какой-нибудь <code>WaterSupply</code>, его точно не нужно
+таскать в каждое место, где требуется кофемашина. Тогда я могу передать
+<code>WaterSupply</code> в мою фабрику.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid from<span style="color: #50a14f;">"gh-r"</span> as<span style="color: #50a14f;">"null"</span> for <span style="color: #50a14f;">\</span>
-  atload<span style="color: #50a14f;">'eval "$(navi widget zsh)"'</span> <span style="color: #50a14f;">\</span>
-                        denisidoro/navi
-</pre>
-</div>
-<p>
-Теперь, нажав <code>ctrl+g</code> вы получите интерактивное окошко куда можно будет вбивать
-ваши хотелки и получать готовые сниппеты.
-</p>
-</div>
-</div>
-<div id="outline-container-orge4350c9" class="outline-3">
-<h3 id="orge4350c9">Интерактивный jq</h3>
-<div class="outline-text-3" id="text-orge4350c9">
-<p>
-Наконец, для любителей погонять json-ы <a href="https://github.com/stedolan/jq">jq</a> является незаменимой. Однако иногда
-хочется интерактивно пощупать json, попробовать разные запросы. Некто reegnz
-совместил fzf и jq и получилась очень приятная утилита, которая пайпит результат
-только что введённой команды в jq и позволяет фильтровать результат, да ещё и с
-автокомплитом полей.
-<img src="https://mishkun.xyz/attachments/zshell4.gif" alt="zshell4.gif" />
-Чтобы заполучить эту красоту, достаточно пары строчек. Обрати внимание на
-<code>trackbinds</code> в сочетании с <code>bindmap"\ej -&gt; ^j"</code>. Эти модификаторы дают
-возможность переопределить биндинги, которые приносит плагин. Например, тут мне
-захотелось вызывать jq на <code>ctrl+j</code>.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid light-mode trackbinds for <span style="color: #50a14f;">\</span>
-  bindmap<span style="color: #50a14f;">"\ej -&gt; ^j"</span> reegnz/jq-zsh-plugin
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">Factory</span>(<span style="color: #e45649;">val</span> <span style="color: #6a1868;">supply</span>: <span style="color: #986801;">WaterSupply</span>) {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(config: <span style="color: #986801;">CoffeeConfig</span>): <span style="color: #986801;">CoffeeMachine</span>
+}
 </pre>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org160570d" class="outline-2">
-<h2 id="org160570d">Автокомплит</h2>
-<div class="outline-text-2" id="text-org160570d">
-<blockquote>
+<div id="outline-container-orgc839f93" class="outline-3">
+<h3 id="orgc839f93">Соединяем две фабрики</h3>
+<div class="outline-text-3" id="text-orgc839f93">
 <p>
-Важно: автокомплит нужно загружать до fzf. Не знаю точно, почему
-</p>
-</blockquote>
-<p>
-Одно из самых частых изменений в моём конфиге - добавление и удаление
-completions. При этом каждый публикует сompletions по разному.
-</p>
-</div>
-<div id="outline-container-orgc49c34d" class="outline-3">
-<h3 id="orgc49c34d">Github</h3>
-<div class="outline-text-3" id="text-orgc49c34d">
-<p>
-Самое простое - если completion лежит на гитхабе. Тогда всё что требуется -
-добавить модификатор <code>as'completion'</code>.
+Теперь давай представим что этот <code>WaterSupply</code> собирается в свою очередь
+какой-то другой фабрикой. Как мне соединить две фабрики между собой и не
+помереть под горами бойлерплейта?
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
- as<span style="color: #50a14f;">"completion"</span> gradle/gradle-completion
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">WaterFactory</span> {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildWaterSupply</span>(): <span style="color: #986801;">WaterSupply</span>
+}
+<span style="color: #e45649;">class</span> <span style="color: #986801;">CoffeeFactory</span>(<span style="color: #e45649;">val</span> <span style="color: #6a1868;">supply</span>: <span style="color: #986801;">WaterSupply</span>) {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(config: <span style="color: #986801;">CoffeeConfig</span>): <span style="color: #986801;">CoffeeMachine</span>
+}
+</pre>
+</div>
+<p>
+Обычно здесь авторам статей про DI надоедать играть с фабриками и они начинают
+расчехлять свой DI фреймворк. Пример же с фабриками расценивается больше как
+пузырьковая сортировка при изучении алгоритмов - просто, понятно, но в продакшне
+не используется. Но достаточно всего лишь знать одну фичу Kotlin и бойлерплейт
+уходит сам собой
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org15f1529" class="outline-2">
+<h2 id="org15f1529">Убираем бойлерплейт</h2>
+<div class="outline-text-2" id="text-org15f1529">
+<p>
+Итак, перед тем как раскрыть секрет пути Открытой Ладони в DI, давай немного
+отрефакторим фабрику кофемашин. Я выделил ей интерфейс Dependencies, чтобы не
+таскать аргументы раз за разом.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">CoffeeFactory</span>(<span style="color: #e45649;">val</span> <span style="color: #6a1868;">deps</span>: <span style="color: #986801;">Dependencies</span>) {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(config: <span style="color: #986801;">CoffeeConfig</span>): <span style="color: #986801;">CoffeeMachine</span>
+    <span style="color: #e45649;">interface</span> <span style="color: #986801;">Dependencies</span> {
+        <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupply</span>: <span style="color: #986801;">WaterSupply</span>
+    }
+}
+</pre>
+</div>
+<p>
+Теперь <code>WaterFactory</code> достаточно заимплементить этот интерфейс и всё в шоколаде.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">WaterFactory</span> : <span style="color: #986801;">CoffeeFactory.Dependencies</span> {
+    <span style="color: #e45649;">override</span> <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupply</span>: <span style="color: #986801;">WaterSupply</span>
+}
+
+<span style="color: #e45649;">val</span> <span style="color: #6a1868;">coffeeMachine</span> = <span style="color: #986801;">CoffeeFactory</span>(<span style="color: #986801;">WaterFactory</span>()).buildMyCoffeeMachine(config)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcb3050b" class="outline-3">
+<h3 id="orgcb3050b">Щепотка делегации</h3>
+<div class="outline-text-3" id="text-orgcb3050b">
+<p>
+Пока код я только добавлял, хотя глава называется &ldquo;убираем бойлерплейт&rdquo;. Но на
+самом деле я его перепрячу &ldquo;под ковёр&rdquo;. До этого я не показывал конструктор
+<code>CoffeeMachine</code>. А там вот что!
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">CoffeeMachine</span>(<span style="color: #e45649;">val</span> <span style="color: #6a1868;">config</span>: <span style="color: #986801;">CoffeeConfig</span>, <span style="color: #e45649;">val</span> <span style="color: #6a1868;">deps</span>: <span style="color: #986801;">Dependencies</span>) {
+    <span style="color: #e45649;">interface</span> <span style="color: #986801;">Dependencies</span> {
+        <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupply</span>: <span style="color: #986801;">WaterSupply</span>
+    }
+}
+</pre>
+</div>
+<p>
+Ха-ха, вот это я тебя подколол, да? Отрефакторил код, ещё до того как показал
+его сниппет. Но теперь, когда карты на столе, маски сняты, и я застал тебя
+врасплох, позволь показать тебе ещё один трюк с рефакторингом &ldquo;задним числом&rdquo;.
+Взгляни ещё раз на фабрику кофемашин.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">CoffeeFactory</span>(
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">deps</span>: <span style="color: #986801;">Dependencies</span>
+): <span style="color: #986801;">CoffeeMachine.Dependencies</span>,
+   <span style="color: #986801;">Dependencies</span> <span style="color: #e45649;">by</span> deps {
+    <span style="color: #e45649;">fun</span> <span style="color: #a626a4;">buildMyCoffeeMachine</span>(config: <span style="color: #986801;">CoffeeConfig</span>): <span style="color: #986801;">CoffeeMachine</span> =
+        <span style="color: #986801;">CoffeeMachine</span>(config, <span style="color: #e45649;">this</span>)
+    <span style="color: #e45649;">interface</span> <span style="color: #986801;">Dependencies</span> {
+        <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupply</span>: <span style="color: #986801;">WaterSupply</span>
+    }
+}
+</pre>
+</div>
+<p>
+Ха, теперь я могу просто передавать <code>this</code> в качестве зависимостей и всё
+работает! А благодаря трюку с <code>by</code> делегацией описывать зависимости, которые я
+взял из внешнего скоупа - не нужно, они уже подходят под интерфейс.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc579407" class="outline-2">
+<h2 id="orgc579407">Но как же фича X из Dagger?</h2>
+<div class="outline-text-2" id="text-orgc579407">
+<p>
+Я упоминал, что AssistedInject - это просто передача параметра в метод. Да,
+внимательный глаз мог заметить что для этого пришлось изменить конструктор. Но
+мне кажется что это нормальный трейд-офф. Почти точно так же просто
+покрывается большинство фич Dagger.
+</p>
+</div>
+<div id="outline-container-orga88f54f" class="outline-3">
+<h3 id="orga88f54f">Named</h3>
+<div class="outline-text-3" id="text-orga88f54f">
+<p>
+Так как Dagger завязан на типы возвращаемого значения, чтобы разделить две
+зависимости одного типа, ему пришлось вводить Named. А теперь, следите за
+руками:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">interface</span> <span style="color: #986801;">Dependencies</span> {
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupplyA</span>: <span style="color: #986801;">WaterSupply</span>
+    <span style="color: #e45649;">val</span> <span style="color: #6a1868;">waterSupplyB</span>: <span style="color: #986801;">WaterSupply</span>
+}
+</pre>
+</div>
+<p>
+Вау, две зависимости одного типа, без аннотаций, как мне это удаётся?
+</p>
+</div>
+</div>
+<div id="outline-container-orgfbfc7ea" class="outline-3">
+<h3 id="orgfbfc7ea">Scope</h3>
+<div class="outline-text-3" id="text-orgfbfc7ea">
+<p>
+Помню как в своё время очень долго пытался разобраться, что же делают скоупы в
+Dagger. А вот что они делают в ручном DI:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">MyFactory</span>: <span style="color: #986801;">MyDependencies</span> {
+    <span style="color: #9ca0a4;">// </span><span style="color: #9ca0a4;">No scope</span>
+    <span style="color: #e45649;">override</span> <span style="color: #e45649;">val</span> <span style="color: #6a1868;">dependencyA</span> <span style="color: #e45649;">get</span>() = <span style="color: #986801;">DependencyA</span>()
+    <span style="color: #9ca0a4;">// </span><span style="color: #9ca0a4;">Scoped to MyFactory</span>
+    <span style="color: #e45649;">override</span> <span style="color: #e45649;">val</span> <span style="color: #6a1868;">dependencyB</span> = <span style="color: #986801;">DependencyB</span>()
+}
+</pre>
+</div>
+<p>
+Закрыть скоуп можно, просто потеряв ссылку на <code>MyFactory</code>, не благодари.
+</p>
+</div>
+</div>
+<div id="outline-container-org9ff0e3a" class="outline-3">
+<h3 id="org9ff0e3a">Provider</h3>
+<div class="outline-text-3" id="text-org9ff0e3a">
+<p>
+Если какая-то зависимость нужна не прям щас, а как-нибудь потом, то из
+предыдущего примера не сложно догадаться, что это легко решает <code>by lazy</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #e45649;">class</span> <span style="color: #986801;">MyFactory</span>: <span style="color: #986801;">MyDependencies</span> {
+    <span style="color: #e45649;">override</span> <span style="color: #e45649;">val</span> <span style="color: #6a1868;">someLazyDep</span> <span style="color: #e45649;">by</span> lazy { <span style="color: #986801;">SomeLazyDep</span>() }
+}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8e87fe3" class="outline-3">
-<h3 id="org8e87fe3">Oh My Zsh</h3>
-<div class="outline-text-3" id="text-org8e87fe3">
+</div>
+<div id="outline-container-org17d86df" class="outline-2">
+<h2 id="org17d86df">И то и то</h2>
+<div class="outline-text-2" id="text-org17d86df">
 <p>
-Хотя я и ругал OMZ за его раздутость, всё таки для некоторых программ там есть
-неплохие комплишены. Благо, zinit имеет специальный синтаксис для загрузки
-плагинов из репозитория OMZ.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
- as<span style="color: #50a14f;">"completion"</span> OMZP::docker/_docker
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org452b8bf" class="outline-3">
-<h3 id="org452b8bf">Локальный сниппет</h3>
-<div class="outline-text-3" id="text-org452b8bf">
-<p>
-Иногда комплишен предлагают устанавливать из локального файла. Для этого в zinit
-есть специальный модификатор <code>is-snippet</code>.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
- as<span style="color: #50a14f;">"completion"</span> blockf is-snippet <span style="color: #50a14f;">"</span><span style="color: #b751b6;">$</span><span style="color: #6a1868;">HOME</span><span style="color: #50a14f;">/.dotfiles/zshell/func/_arc"</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orga416dcc" class="outline-3">
-<h3 id="orga416dcc">zsh-completions</h3>
-<div class="outline-text-3" id="text-orga416dcc">
-<p>
-У zsh есть и свой джентельменский набор комплишенов, которым можно
-воспользоваться при помощи следующей команды.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">zinit wait lucid for <span style="color: #50a14f;">\</span>
- atload<span style="color: #50a14f;">"zicompinit; zicdreplay"</span> blockf @zsh-users/zsh-completions
-</pre>
-</div>
-<p>
-Здесь <code>atload</code> делает некоторую zsh магию, которую я не берусь обьяснять в этом
-посте. Просто копипастишь себе в конфиг и наслаждаешься.
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org06a9149" class="outline-2">
-<h2 id="org06a9149">Заключение</h2>
-<div class="outline-text-2" id="text-org06a9149">
-<p>
-На этом, в принципе, всё! Я пробовал разные плагины из списков
-<a href="https://github.com/unixorn/awesome-zsh-plugins">awesome-zsh-plugins</a>, но показал только те, которыми я реально пользуюсь
-каждый день. Надеюсь, какие-то плагины покажутся полезными и тебе. Поделись
-своим .zshrc в комментариях.
+Надеюсь после прочтения этой статьи тебе стало писать код руками не так страшно.
+Наверное стоит ещё разок померить сколько занимают kaptGenerateStubs у тебя на
+проекте, сколько человекочасов было закопано в изучение Dagger и работу над его
+экосистемой. И спросить себя: оно того стоило? Я считаю, что нет.
 </p>
 </div>
 </div>

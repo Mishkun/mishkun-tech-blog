@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-29 Sun 23:15 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Коэффекты</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2738,12 +2745,12 @@ p.verse {
 <div id="content" class="content">
 <h1 class="title">Коэффекты</h1>
 
-<div id="org5d7aadb" class="figure">
+<div id="org4f853c1" class="figure">
 <p><img src="https://mishkun.xyz/attachments/coeffects1.jpeg" alt="coeffects1.jpeg" />
 </p>
 </div>
 
-<div class="abstract" id="org514a6dc">
+<div class="abstract" id="orgeb6ab06">
 <p>
 Коэффекты - очень размытое понятие, используемое в разных контекстах немного
 по-разному. Но для построения чисто функционального приложения они являются
@@ -2752,9 +2759,9 @@ p.verse {
 
 </div>
 
-<div id="outline-container-org769a52c" class="outline-2">
-<h2 id="org769a52c">Вспомним эффекты</h2>
-<div class="outline-text-2" id="text-org769a52c">
+<div id="outline-container-org42b5e39" class="outline-2">
+<h2 id="org42b5e39">Вспомним эффекты</h2>
+<div class="outline-text-2" id="text-org42b5e39">
 <p>
 Эффекты - это что-то, что является как бы выходным побочным действием нашей
 логики. То есть мы приняли решение что-то сделать и отдали это наружу. На,
@@ -2763,9 +2770,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-orgbd371ef" class="outline-2">
-<h2 id="orgbd371ef">Пример, где эффектов недостаточно</h2>
-<div class="outline-text-2" id="text-orgbd371ef">
+<div id="outline-container-org764edcb" class="outline-2">
+<h2 id="org764edcb">Пример, где эффектов недостаточно</h2>
+<div class="outline-text-2" id="text-org764edcb">
 <p>
 В The Elm Architecture эффекты называются командами. И вот для того, чтобы
 получить текущее время, нужно вернуть команду &ldquo;получи время&rdquo; и дождаться
@@ -2774,9 +2781,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-org168262b" class="outline-2">
-<h2 id="org168262b">Workaround</h2>
-<div class="outline-text-2" id="text-org168262b">
+<div id="outline-container-org09c27b3" class="outline-2">
+<h2 id="org09c27b3">Workaround</h2>
+<div class="outline-text-2" id="text-org09c27b3">
 <p>
 Когда я пишу в TEA стиле под Android, я часто прибегаю к хаку: вставляю всякий
 контекст в сообщение. Побочные эффекты доступны отовсюду, поэтому дёрнуть
@@ -2786,9 +2793,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-org60b20c9" class="outline-2">
-<h2 id="org60b20c9">Красивый способ</h2>
-<div class="outline-text-2" id="text-org60b20c9">
+<div id="outline-container-org7af4189" class="outline-2">
+<h2 id="org7af4189">Красивый способ</h2>
+<div class="outline-text-2" id="text-org7af4189">
 <p>
 Если как-то можно было сделать коэффекты, то проблема бы решилась сама собой.
 Говоришь системе, что прежде чем на этот мессадж ответить, нужно чтобы она
@@ -2797,9 +2804,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd9fc87" class="outline-2">
-<h2 id="orgdd9fc87">Стейт - это эффект?</h2>
-<div class="outline-text-2" id="text-orgdd9fc87">
+<div id="outline-container-org06da997" class="outline-2">
+<h2 id="org06da997">Стейт - это эффект?</h2>
+<div class="outline-text-2" id="text-org06da997">
 <p>
 Ещё одна штука, которая мне мозолит глаза в сигнатуре любого редьюсера - стейт.
 Ведь это всего лишь частный случай побочного эффекта (и коэффекта). Хотим что-то

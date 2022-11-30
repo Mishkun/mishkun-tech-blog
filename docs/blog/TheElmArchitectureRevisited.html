@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-19 Tue 19:47 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Elm Architecture в Android проекте: 3 года спустя</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2738,12 +2745,12 @@ p.verse {
 <div id="content" class="content">
 <h1 class="title">The Elm Architecture в Android проекте: 3 года спустя</h1>
 
-<div id="org1cefcba" class="figure">
+<div id="orge52df2f" class="figure">
 <p><img src="https://mishkun.xyz/attachments/elmrevisited4.jpg" alt="elmrevisited4.jpg" />
 </p>
 </div>
 
-<div class="abstract" id="org2567bda">
+<div class="abstract" id="org572fe44">
 <p>
 Почти 3 года назад я &ldquo;продал&rdquo; TEA своей команде в Авто.ру. С тех пор наша команда
 написала 180 TEA-компонентов - от простых экранов с парой кнопок до сложных
@@ -2756,9 +2763,9 @@ Clean Architecture, RxJava, Dagger 2. С тех пор я много думал 
 
 </div>
 
-<div id="outline-container-orgec57d7b" class="outline-2">
-<h2 id="orgec57d7b">Какие проблемы я пытался решить при помощи TEA в 2018</h2>
-<div class="outline-text-2" id="text-orgec57d7b">
+<div id="outline-container-org5289bc1" class="outline-2">
+<h2 id="org5289bc1">Какие проблемы я пытался решить при помощи TEA в 2018</h2>
+<div class="outline-text-2" id="text-org5289bc1">
 <p>
 Любое архитектурное решение должно подкрепляться проблемами, которое оно
 призвано решить, а не только хотелкой создателя. Некоторые из проблем специфичны для
@@ -2768,9 +2775,9 @@ Clean Architecture, RxJava, Dagger 2. С тех пор я много думал 
 архитектуры были помимо прочих такие проблемы:
 </p>
 </div>
-<div id="outline-container-org8991255" class="outline-3">
-<h3 id="org8991255">Наличие готовой логики в виде интеракторов, репозиториев и прочего Clean</h3>
-<div class="outline-text-3" id="text-org8991255">
+<div id="outline-container-org4e04a5f" class="outline-3">
+<h3 id="org4e04a5f">Наличие готовой логики в виде интеракторов, репозиториев и прочего Clean</h3>
+<div class="outline-text-3" id="text-org4e04a5f">
 <p>
 Когда не пишешь приложение с нуля, а мигрируешь уже существующее, у тебя связаны
 руки. Тебе нужно иметь возможность взаимодействовать с любым старым кодом, как
@@ -2778,9 +2785,9 @@ Clean Architecture, RxJava, Dagger 2. С тех пор я много думал 
 абстрактным и легко расширяемым.
 </p>
 </div>
-<div id="outline-container-orga6835f5" class="outline-4">
-<h4 id="orga6835f5">Решение в Puerh</h4>
-<div class="outline-text-4" id="text-orga6835f5">
+<div id="outline-container-orgb2b71be" class="outline-4">
+<h4 id="orgb2b71be">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-orgb2b71be">
 <p>
 Effect-ы в Puerh - это просто data class с параметрами для
 выполнения задачи, но никак не <code>suspend CoroutineScope.(dispatch: Dispatch&lt;Msg&gt;)
@@ -2794,9 +2801,9 @@ EffectHandler без эффектов. Хоть и многословное, н�
 </div>
 </div>
 </div>
-<div id="outline-container-org16b5c6f" class="outline-3">
-<h3 id="org16b5c6f">Устаревшая ещё тогда RxJava 1</h3>
-<div class="outline-text-3" id="text-org16b5c6f">
+<div id="outline-container-orga38c33c" class="outline-3">
+<h3 id="orga38c33c">Устаревшая ещё тогда RxJava 1</h3>
+<div class="outline-text-3" id="text-orga38c33c">
 <p>
 Ещё в марте 2018 RxJava 1 достигла последнего релиза. Создатели фреймворка не
 собирались далее её поддерживать. Но RxJava была на всех слоях. Типичное
@@ -2806,7 +2813,7 @@ EffectHandler без эффектов. Хоть и многословное, н�
 </p>
 
 
-<div id="org1f914a9" class="figure">
+<div id="org0e7c10f" class="figure">
 <p><img src="https://mishkun.xyz/attachments/elmrevisited3.jpg" alt="elmrevisited3.jpg" />
 </p>
 </div>
@@ -2816,9 +2823,9 @@ EffectHandler без эффектов. Хоть и многословное, н�
 не простая задача, на которую не хватало технического бюджета.
 </p>
 </div>
-<div id="outline-container-org0776ce0" class="outline-4">
-<h4 id="org0776ce0">Решение в Puerh</h4>
-<div class="outline-text-4" id="text-org0776ce0">
+<div id="outline-container-orgeabfe7f" class="outline-4">
+<h4 id="orgeabfe7f">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-orgeabfe7f">
 <p>
 Примитивный дизайн EffectHandler, намеренное избегание изобилующих тогда
 Rx-интерфейсов, ставших позднее модными корутин и их саспендов - всё это был
@@ -2831,11 +2838,11 @@ Rx-интерфейсов, ставших позднее модными кору
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc1a5ec" class="outline-3">
-<h3 id="orgbc1a5ec">Скудность опыта решения таких масштабных задач</h3>
-<div class="outline-text-3" id="text-orgbc1a5ec">
+<div id="outline-container-org6a2780e" class="outline-3">
+<h3 id="org6a2780e">Скудность опыта решения таких масштабных задач</h3>
+<div class="outline-text-3" id="text-org6a2780e">
 
-<div id="org87e6682" class="figure">
+<div id="orgd9140db" class="figure">
 <p><img src="https://mishkun.xyz/attachments/elmrevisited1.jpg" alt="elmrevisited1.jpg" />
 </p>
 </div>
@@ -2850,9 +2857,9 @@ Rx-интерфейсов, ставших позднее модными кору
 проблемы будут стоять перед проектом в будущем
 </p>
 </div>
-<div id="outline-container-orgfef5e80" class="outline-4">
-<h4 id="orgfef5e80">Решение в Puerh</h4>
-<div class="outline-text-4" id="text-orgfef5e80">
+<div id="outline-container-orgeb5b0e3" class="outline-4">
+<h4 id="orgeb5b0e3">Решение в Puerh</h4>
+<div class="outline-text-4" id="text-orgeb5b0e3">
 <p>
 Я откладывал любое решение &ldquo;до последнего&rdquo;. Старался оперировать максимально
 общими интерфейсами, а иногда даже и просто конвенциями. А реализацию давал на откуп
@@ -2865,9 +2872,9 @@ Rx-интерфейсов, ставших позднее модными кору
 </div>
 </div>
 </div>
-<div id="outline-container-org55eb6c8" class="outline-2">
-<h2 id="org55eb6c8">Проблемы Puerh</h2>
-<div class="outline-text-2" id="text-org55eb6c8">
+<div id="outline-container-org05a8b6c" class="outline-2">
+<h2 id="org05a8b6c">Проблемы Puerh</h2>
+<div class="outline-text-2" id="text-org05a8b6c">
 <p>
 У <a href="https://github.com/Mishkun/Puerh">Puerh</a> есть некоторые концептуальные проблемы как раз произрастающие из того,
 что на эту архитектуру надо было мигрировать большой проект. Я всё ещё считаю
@@ -2876,9 +2883,9 @@ Puerh хорошим решением своей задачи. Но если б�
 сделать немного иначе.
 </p>
 </div>
-<div id="outline-container-org94123af" class="outline-3">
-<h3 id="org94123af">Раздробленность источников правды в Android</h3>
-<div class="outline-text-3" id="text-org94123af">
+<div id="outline-container-org525886c" class="outline-3">
+<h3 id="org525886c">Раздробленность источников правды в Android</h3>
+<div class="outline-text-3" id="text-org525886c">
 <p>
 TEA, как и любая другая UDF архитектура, очень хочет знать всё про всех и
 владеть т.н. источником правды - неделимой истиной, постулатом, из которого
@@ -2894,9 +2901,9 @@ Puerh предполагалось что часть стейта будет о�
 синхронизировать. Это сложно и этим редко когда есть время заморачиваться.
 </p>
 </div>
-<div id="outline-container-org82a8f43" class="outline-4">
-<h4 id="org82a8f43">Ещё однин пример - сторонние SDK</h4>
-<div class="outline-text-4" id="text-org82a8f43">
+<div id="outline-container-org8608532" class="outline-4">
+<h4 id="org8608532">Ещё однин пример - сторонние SDK</h4>
+<div class="outline-text-4" id="text-org8608532">
 <p>
 Когда работаешь с картой, SDK распознавания чего-то или любым другим сложным UI,
 тебе опять приходится синхронизировать свою копию стейта с оригиналом. Это
@@ -2906,9 +2913,9 @@ Puerh предполагалось что часть стейта будет о�
 </div>
 </div>
 </div>
-<div id="outline-container-org30baafc" class="outline-3">
-<h3 id="org30baafc">Отсутствие решения для коэффектов</h3>
-<div class="outline-text-3" id="text-org30baafc">
+<div id="outline-container-org6e388d3" class="outline-3">
+<h3 id="org6e388d3">Отсутствие решения для коэффектов</h3>
+<div class="outline-text-3" id="text-org6e388d3">
 <p>
 Я ранее <a href="https://mishkun.xyz/blog/Coeffects.html">писал</a> о коэффектах - ситуациях, когда, в отличие от эффектов, нужно
 что-то получить из &ldquo;грязного внешнего мира&rdquo;, нежели что-то туда записать.
@@ -2921,9 +2928,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-org0fcdeaa" class="outline-3">
-<h3 id="org0fcdeaa">Сложность state-based навигации</h3>
-<div class="outline-text-3" id="text-org0fcdeaa">
+<div id="outline-container-orgfd11d0a" class="outline-3">
+<h3 id="orgfd11d0a">Сложность state-based навигации</h3>
+<div class="outline-text-3" id="text-orgfd11d0a">
 <p>
 Когда работаешь с TEA, хочется иметь навигацию в виде стейта. Чтобы ты мог
 посмотреть в стейт любого из предыдущих экранов, подвигать его, как тебе удобно.
@@ -2935,9 +2942,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7f5a32" class="outline-3">
-<h3 id="orgb7f5a32">Декомпозиция</h3>
-<div class="outline-text-3" id="text-orgb7f5a32">
+<div id="outline-container-org4a7d43f" class="outline-3">
+<h3 id="org4a7d43f">Декомпозиция</h3>
+<div class="outline-text-3" id="text-org4a7d43f">
 <p>
 Когда я хочу выделить какую-то общую логику с мессаджами, эффектами и логикой
 вокруг них - я могу завести &ldquo;фичу-донора&rdquo;. Это будет фича, единственное
@@ -2954,9 +2961,9 @@ Puerh предполагалось что часть стейта будет о�
 </div>
 </div>
 </div>
-<div id="outline-container-orgec13daf" class="outline-2">
-<h2 id="orgec13daf">Общая проблема - в Android разработке не бывает единого источника правды</h2>
-<div class="outline-text-2" id="text-orgec13daf">
+<div id="outline-container-org96d4bdc" class="outline-2">
+<h2 id="org96d4bdc">Общая проблема - в Android разработке не бывает единого источника правды</h2>
+<div class="outline-text-2" id="text-org96d4bdc">
 <p>
 У всех перечисленных проблем легко определить общего виновника - конфликт между
 желанием TEA иметь единый источник правды и жестокой реальностью, где нет
@@ -2964,9 +2971,9 @@ Puerh предполагалось что часть стейта будет о�
 которых старается не вылезать за границы своей ответственности.
 </p>
 </div>
-<div id="outline-container-org2e2982c" class="outline-3">
-<h3 id="org2e2982c">Иерархичная структура</h3>
-<div class="outline-text-3" id="text-org2e2982c">
+<div id="outline-container-org6df5cd5" class="outline-3">
+<h3 id="org6df5cd5">Иерархичная структура</h3>
+<div class="outline-text-3" id="text-org6df5cd5">
 <p>
 В Puerh нам навязывается иерархичная структура приложения. Это не совсем плохо,
 ведь есть трейд-офф между жесткой иерархичностью и динамизмом плоской структуры.
@@ -2977,9 +2984,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-org125aa58" class="outline-3">
-<h3 id="org125aa58">Плоская структура</h3>
-<div class="outline-text-3" id="text-org125aa58">
+<div id="outline-container-orge1d89f4" class="outline-3">
+<h3 id="orge1d89f4">Плоская структура</h3>
+<div class="outline-text-3" id="text-orge1d89f4">
 <p>
 В Puerh мы в команде долго обсуждали, стоит ли делать EffectHandler иерархичным,
 где верхнеуровневый <code>EffectHandler</code> определяет, как эффекты передать его
@@ -2993,9 +3000,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9d693d" class="outline-3">
-<h3 id="orgd9d693d">Тезис - Android приложения по своей природе более плоские</h3>
-<div class="outline-text-3" id="text-orgd9d693d">
+<div id="outline-container-org2fc274f" class="outline-3">
+<h3 id="org2fc274f">Тезис - Android приложения по своей природе более плоские</h3>
+<div class="outline-text-3" id="text-org2fc274f">
 <p>
 Хорошей практикой в мире Android приложений сейчас считается выделять
 компоненты, которые закрывают собой целиком юзер-стори. Как правило, такие
@@ -3007,9 +3014,9 @@ Puerh предполагалось что часть стейта будет о�
 </div>
 </div>
 </div>
-<div id="outline-container-org1c64c66" class="outline-2">
-<h2 id="org1c64c66">Коэффекты спешат на помощь</h2>
-<div class="outline-text-2" id="text-org1c64c66">
+<div id="outline-container-orga56dcaf" class="outline-2">
+<h2 id="orga56dcaf">Коэффекты спешат на помощь</h2>
+<div class="outline-text-2" id="text-orga56dcaf">
 <p>
 То, что в реальности не бывает единого источника правды, а только несколько
 разрозненных &ldquo;тематик&rdquo;, в каждой из которых есть единый источник, не должно
@@ -3021,9 +3028,9 @@ Puerh предполагалось что часть стейта будет о�
 коэффектам.
 </p>
 </div>
-<div id="outline-container-org72e43e4" class="outline-3">
-<h3 id="org72e43e4">Кейс 1: Коэффекты как вычисление аргумента извне</h3>
-<div class="outline-text-3" id="text-org72e43e4">
+<div id="outline-container-orgf5ae28e" class="outline-3">
+<h3 id="orgf5ae28e">Кейс 1: Коэффекты как вычисление аргумента извне</h3>
+<div class="outline-text-3" id="text-orgf5ae28e">
 <p>
 Изначально коэффектами я заинтересовался как возможное решение досадной
 проблемы - как получить случайное число для использования в своей логике. Логика
@@ -3038,9 +3045,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-org254575e" class="outline-3">
-<h3 id="org254575e">Кейс 2: Стейт внешних SDK тоже можно получать как Coeffect</h3>
-<div class="outline-text-3" id="text-org254575e">
+<div id="outline-container-org7490480" class="outline-3">
+<h3 id="org7490480">Кейс 2: Стейт внешних SDK тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-org7490480">
 <p>
 Если ты работаешь с SDK карт или авторизации, тебе не нужно постоянно
 синхронизировать состояние точки на карте со своим стейтом. Если описать
@@ -3050,9 +3057,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-orgd2f1ed2" class="outline-3">
-<h3 id="orgd2f1ed2">Кейс 3: Стейт своего юзер-стори тоже можно получать как Coeffect</h3>
-<div class="outline-text-3" id="text-orgd2f1ed2">
+<div id="outline-container-orgb316c9a" class="outline-3">
+<h3 id="orgb316c9a">Кейс 3: Стейт своего юзер-стори тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-orgb316c9a">
 <p>
 Если стейт карт и текущего юзера можно получать из коэффектов, то чем &ldquo;наш&rdquo;
 стейт лучше/хуже? И как вообще определить, какой стейт &ldquo;наш&rdquo;, а какой уже
@@ -3062,9 +3069,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-org21bf481" class="outline-3">
-<h3 id="org21bf481">Кейс 4: Стейт фичи-донора тоже можно получать как Coeffect</h3>
-<div class="outline-text-3" id="text-org21bf481">
+<div id="outline-container-org3b55ba2" class="outline-3">
+<h3 id="org3b55ba2">Кейс 4: Стейт фичи-донора тоже можно получать как Coeffect</h3>
+<div class="outline-text-3" id="text-org3b55ba2">
 <p>
 Теперь, если тебя не интересует стейт фичи-донора, ты можешь ничего не указывать
 в коэффектах. Но если тебе нужно, то можно указать довольно точно, что конкретно
@@ -3074,11 +3081,11 @@ Puerh предполагалось что часть стейта будет о�
 </div>
 </div>
 </div>
-<div id="outline-container-org1279ab6" class="outline-2">
-<h2 id="org1279ab6">Что получается на практике?</h2>
-<div class="outline-text-2" id="text-org1279ab6">
+<div id="outline-container-org892cf09" class="outline-2">
+<h2 id="org892cf09">Что получается на практике?</h2>
+<div class="outline-text-2" id="text-org892cf09">
 
-<div id="org7c80ace" class="figure">
+<div id="orgcd1a653" class="figure">
 <p><img src="https://mishkun.xyz/attachments/elmrevisited2.jpg" alt="elmrevisited2.jpg" />
 </p>
 </div>
@@ -3090,9 +3097,9 @@ Puerh предполагалось что часть стейта будет о�
 правильно писать.
 </p>
 </div>
-<div id="outline-container-org1b358b0" class="outline-3">
-<h3 id="org1b358b0">Основные части</h3>
-<div class="outline-text-3" id="text-org1b358b0">
+<div id="outline-container-orgf77e32e" class="outline-3">
+<h3 id="orgf77e32e">Основные части</h3>
+<div class="outline-text-3" id="text-orgf77e32e">
 <p>
 В целом архитектура будет состоять из пяти необходимых компонентов
 </p>
@@ -3111,9 +3118,9 @@ Puerh предполагалось что часть стейта будет о�
 </p>
 </div>
 </div>
-<div id="outline-container-org18d01c7" class="outline-3">
-<h3 id="org18d01c7">MessageHandler</h3>
-<div class="outline-text-3" id="text-org18d01c7">
+<div id="outline-container-org9415fcd" class="outline-3">
+<h3 id="org9415fcd">MessageHandler</h3>
+<div class="outline-text-3" id="text-org9415fcd">
 <p>
 Классическая сигнатура <code>Msg, State -&gt; State, Set&lt;Effect&gt;</code> упрощается до <code>Msg,
 Coeffects -&gt; Set&lt;Effect&gt;</code>. Теперь стейт &ldquo;такой же как все&rdquo; и теряется в толпе
@@ -3129,9 +3136,9 @@ Coeffects -&gt; Set&lt;Effect&gt;</code>. Теперь стейт &ldquo;так�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbb5157c" class="outline-4">
-<h4 id="orgbb5157c">Как представлять Coeffects</h4>
-<div class="outline-text-4" id="text-orgbb5157c">
+<div id="outline-container-org8633a0f" class="outline-4">
+<h4 id="org8633a0f">Как представлять Coeffects</h4>
+<div class="outline-text-4" id="text-org8633a0f">
 <p>
 При достаточной внимательности ты можешь хмыкнуть &ldquo;что же это за <code>Coeffects</code>
 такие?&rdquo;. И будешь прав. Реализация <code>Coeffects</code> это краеугольный камень, который
@@ -3149,9 +3156,9 @@ Coeffects -&gt; Set&lt;Effect&gt;</code>. Теперь стейт &ldquo;так�
 </div>
 </div>
 </div>
-<div id="outline-container-org5da6342" class="outline-4">
-<h4 id="org5da6342">Синтаксический сахар для корректности</h4>
-<div class="outline-text-4" id="text-org5da6342">
+<div id="outline-container-org98ab252" class="outline-4">
+<h4 id="org98ab252">Синтаксический сахар для корректности</h4>
+<div class="outline-text-4" id="text-org98ab252">
 <p>
 Если присмотреться к двум функциям, которые определяют <code>MessageHandler</code>, то
 кажется, что мы теряем type-safety.
@@ -3194,9 +3201,9 @@ Coeffects -&gt; Set&lt;Effect&gt;</code>. Теперь стейт &ldquo;так�
 </div>
 </div>
 </div>
-<div id="outline-container-orgb800224" class="outline-3">
-<h3 id="orgb800224">EffectHandler</h3>
-<div class="outline-text-3" id="text-orgb800224">
+<div id="outline-container-org064c79d" class="outline-3">
+<h3 id="org064c79d">EffectHandler</h3>
+<div class="outline-text-3" id="text-org064c79d">
 <p>
 <code>EffectHandler</code> в Puerh был достаточно хорош. Я бы и не вносил в него изменения,
 но всё равно есть несколько идей, как его можно улучшить. Я хочу добавить в него
@@ -3223,9 +3230,9 @@ suspend-функции, потому что мне кажется что кор�
 транзакционно.
 </p>
 </div>
-<div id="outline-container-org35467cc" class="outline-4">
-<h4 id="org35467cc">EffectHandler как Middleware</h4>
-<div class="outline-text-4" id="text-org35467cc">
+<div id="outline-container-org6548dbc" class="outline-4">
+<h4 id="org6548dbc">EffectHandler как Middleware</h4>
+<div class="outline-text-4" id="text-org6548dbc">
 <p>
 По сравнению с Puerh хотелось улучшить эргономику эффектов. Если мы делаем всё
 приложение на эффектах, нам неизбежно захочется выделить низкоуровневые эффекты
@@ -3241,9 +3248,9 @@ suspend-функции, потому что мне кажется что кор�
 </div>
 </div>
 </div>
-<div id="outline-container-org960359d" class="outline-3">
-<h3 id="org960359d">CoeffectHandler</h3>
-<div class="outline-text-3" id="text-org960359d">
+<div id="outline-container-org3cdd260" class="outline-3">
+<h3 id="org3cdd260">CoeffectHandler</h3>
+<div class="outline-text-3" id="text-org3cdd260">
 <p>
 <code>CoeffectHandler</code> мог бы вообще отсутствовать, если принять коэффекты подвидом
 эффектов и переиспользовать сущность <code>EffectHandler</code> для них. Но для
@@ -3263,9 +3270,9 @@ suspend-функции, потому что мне кажется что кор�
 результат в мапу.
 </p>
 </div>
-<div id="outline-container-org787b3b5" class="outline-4">
-<h4 id="org787b3b5">Маппинг</h4>
-<div class="outline-text-4" id="text-org787b3b5">
+<div id="outline-container-orgb9bd227" class="outline-4">
+<h4 id="orgb9bd227">Маппинг</h4>
+<div class="outline-text-4" id="text-orgb9bd227">
 <p>
 Одну штуку я подсмотрел в <code>re-frame</code>. Там в процессе обработки сообщение
 пропускается через стек интерцепторов, которые по своей сути похожи на
@@ -3287,9 +3294,9 @@ suspend-функции, потому что мне кажется что кор�
 </div>
 </div>
 </div>
-<div id="outline-container-org7d2acfa" class="outline-3">
-<h3 id="org7d2acfa">Selector</h3>
-<div class="outline-text-3" id="text-org7d2acfa">
+<div id="outline-container-orgd12d6ed" class="outline-3">
+<h3 id="orgd12d6ed">Selector</h3>
+<div class="outline-text-3" id="text-orgd12d6ed">
 <p>
 Так как источников правды несколько, нужна будет сущность, которая будет
 подписываться на коэффекты, собирать из нескольких источников стейт и отдавать
@@ -3309,9 +3316,9 @@ suspend-функции, потому что мне кажется что кор�
 </p>
 </div>
 </div>
-<div id="outline-container-org84683f9" class="outline-3">
-<h3 id="org84683f9">Engine</h3>
-<div class="outline-text-3" id="text-org84683f9">
+<div id="outline-container-org3028fb0" class="outline-3">
+<h3 id="org3028fb0">Engine</h3>
+<div class="outline-text-3" id="text-org3028fb0">
 <p>
 <code>Engine</code> должен связывать все компоненты воедино.
 </p>
@@ -3329,9 +3336,9 @@ suspend-функции, потому что мне кажется что кор�
 </pre>
 </div>
 </div>
-<div id="outline-container-org1083fea" class="outline-4">
-<h4 id="org1083fea">DI и навигация</h4>
-<div class="outline-text-4" id="text-org1083fea">
+<div id="outline-container-org15a508e" class="outline-4">
+<h4 id="org15a508e">DI и навигация</h4>
+<div class="outline-text-4" id="text-org15a508e">
 <p>
 Зачем мне динамическая регистрация компонентов? Меня очень вдохновил
 концепт <code>CompositionLocal</code> в compose. Идея о том что в зависимости позиции в
@@ -3346,9 +3353,9 @@ suspend-функции, потому что мне кажется что кор�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc33e1b0" class="outline-2">
-<h2 id="orgc33e1b0">Request For Comments</h2>
-<div class="outline-text-2" id="text-orgc33e1b0">
+<div id="outline-container-orge3ae76d" class="outline-2">
+<h2 id="orge3ae76d">Request For Comments</h2>
+<div class="outline-text-2" id="text-orge3ae76d">
 <p>
 Эта статья лишь компиляция моих размышлений на тему интеграции коэффектов в TEA.
 Приблизительный план, как это должно выглядеть. Мне было бы очень интересно

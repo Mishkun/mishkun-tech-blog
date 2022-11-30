@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-19 Tue 19:47 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sitemap for project blog</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2737,39 +2744,44 @@ p.verse {
 </div>
 <div id="content" class="content">
 <h1 class="title">Sitemap for project blog</h1>
-<ul class="org-ul">
-<li><a href="index.html">The Blog</a></li>
-<li id="<a href="blog/Coeffects.html">Коэффекты</a>">Коэффекты - очень размытое понятие, используемое в разных контекстах немного
-по-разному. Но для построения чисто функционального приложения они являются
-очень важными. Попробую обьяснить, как я их понимаю сам.</li>
-<li id="<a href="blog/Comments.html">Комментарии в коде</a>">Устаревание комментариев в коде - проблема, для которой, на первый взгляд, не
-найти хорошего решения. Попробую накидать свои мысли об этом.</li>
-<li id="<a href="blog/Di-frameworks.html">Решают ли DI-фреймворки больше проблем, чем создают?</a>">В моём канале с мемами много шуток про то, что в спорах между Dagger 2 и Koin на
+<dl class="org-dl">
+<dt><a href="blog/Data-oriented-programming.html">Data Oriented Programming</a></dt><dd>Мой обзор на MEAP книги Data Oriented Programming. Неплохая книжечка, в которой
+описаны все плюсы clojure, но о самом языке ни слова.</dd>
+<dt><a href="blog/Di-frameworks.html">Решают ли DI-фреймворки больше проблем, чем создают?</a></dt><dd>В моём канале с мемами много шуток про то, что в спорах между Dagger 2 и Koin на
 самом деле побеждают фабрики. Так вот, это не шутки. Я считаю что DI-фреймворки
 в android - это подражание спрингерам, дань моде, следствие хронического
 ООП-клинкода головного мозга и просто переоценённое излишество. Жёсткий наброс
-вкинут, давайте разбираться, правда ли это.</li>
-<li id="<a href="blog/Online-meetups.html">Кому нужны онлайн митапы?</a>">Провести митап онлайн гораздо дешевле чем снимать помещение и кормить всех
+вкинут, давайте разбираться, правда ли это.</dd>
+<dt><a href="blog/Comments.html">Комментарии в коде</a></dt><dd>Устаревание комментариев в коде - проблема, для которой, на первый взгляд, не
+найти хорошего решения. Попробую накидать свои мысли об этом.</dd>
+<dt><a href="blog/Online-meetups.html">Кому нужны онлайн митапы?</a></dt><dd>Провести митап онлайн гораздо дешевле чем снимать помещение и кормить всех
 пиццулей. На мой взгляд это путь в никуда, а сам я всегда стараюсь
-организовывать митапы оффлайн. Рассказываю, почему.</li>
-<li id="<a href="blog/DSL-over-API.html">Антипаттерн DSL over API</a>">Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
+организовывать митапы оффлайн. Рассказываю, почему.</dd>
+<dt><a href="blog/DSL-over-API.html">Антипаттерн DSL over API</a></dt><dd>Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
 embedded domain specific languages. Писать-то может их и классно, но часто потом
-пользоваться получившимися DSL не очень удобно. В чём же проблема?</li>
-<li id="<a href="blog/Data-oriented-programming.html">Data Oriented Programming</a>">Мой обзор на MEAP книги Data Oriented Programming. Неплохая книжечка, в которой
-описаны все плюсы clojure, но о самом языке ни слова.</li>
-<li id="<a href="blog/zshell-setup.html">Мой .zshrc с использованием zi</a>">Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
+пользоваться получившимися DSL не очень удобно. В чём же проблема?</dd>
+<dt><a href="blog/Coeffects.html">Коэффекты</a></dt><dd>Коэффекты - очень размытое понятие, используемое в разных контекстах немного
+по-разному. Но для построения чисто функционального приложения они являются
+очень важными. Попробую обьяснить, как я их понимаю сам.</dd>
+<dt>(no term)</dt><dd><a href="index.html">Голос из под шторки</a></dd>
+<dt><a href="blog/zshell-setup.html">Мой .zshrc с использованием zinit</a></dt><dd>Zshell - очень крутая оболочка. Возможности её <a href="https://thevaluable.dev/zsh-line-editor-configuration-mouseless/">line-editor</a> практически
 безграничны: тут тебе и поддержка биндов и виджеты. Жаль, что &ldquo;из коробки&rdquo;
 ничего, кроме автокомплита, не увидишь. Приходится настраивать всё самому,
 дёргая сниппеты из статей добрых людей из интернета. Настало время мне и самому
-написать небольшой гайд по конфигурации zsh.</li>
-<li id="<a href="blog/TheElmArchitectureRevisited.html">The Elm Architecture в Android проекте: 3 года спустя</a>">Почти 3 года назад я &ldquo;продал&rdquo; TEA своей команде в Авто.ру. С тех пор наша команда
+написать небольшой гайд по конфигурации zsh.</dd>
+<dt><a href="blog/TheElmArchitectureRevisited.html">The Elm Architecture в Android проекте: 3 года спустя</a></dt><dd>Почти 3 года назад я &ldquo;продал&rdquo; TEA своей команде в Авто.ру. С тех пор наша команда
 написала 180 TEA-компонентов - от простых экранов с парой кнопок до сложных
 форм-визардов с кучей логики. Тогда одним из ключевых требований дизайна,
 которые я перед собой ставил, был интероп с тогдашним стеком приложения - MVP +
 Clean Architecture, RxJava, Dagger 2. С тех пор я много думал о том, как бы
 выглядела архитектура, если убрать ограничение на совместимость с наследием
-эпохи Clean Architecture. Эта статья - компиляция моих заметок на эту тему.</li>
-</ul>
+эпохи Clean Architecture. Эта статья - компиляция моих заметок на эту тему.</dd>
+<dt><a href="blog/Manual-DI-Cookbook.html">Ладонь против Ножа: Ручной DI вместо Dagger</a></dt><dd>Год назад я написал <a href="Di-frameworks.html">пост</a> про то что DI фреймворки не решают проблемы, а заменяют
+их новыми. На что многие мне ответили &ldquo;а как же так? ты что, пишешь зависимости
+рУкАмИ? Ты что, Dagger пишет код за меня!&rdquo;. Ну что ж, давайте я в новом посте
+покажу тебе, мой сомневающийся в силе фабрик читатель, как при помощи
+by-делегации в Kotlin можно писать кода не больше чем при использовании Dagger.</dd>
+</dl>
 </div>
 <div id="postamble" class="status">
 <a class="telegram-button button" href="https://t.me/izpodshtorki" target="_blank"><i></i><span>Подпишись и обсуждай в Telegram</span></a>

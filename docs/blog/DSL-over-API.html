@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-29 Sun 23:15 -->
+<!-- 2022-11-30 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Антипаттерн DSL over API</title>
@@ -190,7 +190,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -2226,6 +2226,13 @@ h2,
 h3 {
   line-height: 1.4em;
 }
+
+h3,
+h4,
+h5,
+h6 {
+  color: #70371A;
+}
 h4,
 h5,
 h6 {
@@ -2239,7 +2246,7 @@ h6 {
     font-size: 1.5em;
   }
   h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h1,
   h2,
@@ -2738,12 +2745,12 @@ p.verse {
 <div id="content" class="content">
 <h1 class="title">Антипаттерн DSL over API</h1>
 
-<div id="orgb646caa" class="figure">
+<div id="orge4f0f3b" class="figure">
 <p><img src="https://mishkun.xyz/attachments/dsloverapi1.jpg" alt="dsloverapi1.jpg" />
 </p>
 </div>
 
-<div class="abstract" id="orgd4cefbc">
+<div class="abstract" id="orgefee31a">
 <p>
 Kotlin часто рекламируется как язык, в котором классно и легко писать eDSL -
 embedded domain specific languages. Писать-то может их и классно, но часто потом
@@ -2752,9 +2759,9 @@ embedded domain specific languages. Писать-то может их и кла�
 
 </div>
 
-<div id="outline-container-orgd853732" class="outline-2">
-<h2 id="orgd853732">Что такое DSL?</h2>
-<div class="outline-text-2" id="text-orgd853732">
+<div id="outline-container-orgda00d34" class="outline-2">
+<h2 id="orgda00d34">Что такое DSL?</h2>
+<div class="outline-text-2" id="text-orgda00d34">
 <p>
 Вот у нас есть наш general purpose language. В теории на нём одинаково норм
 считать траекторию ракеты или показывать котиков в ленте клона тиктока. Можно
@@ -2775,9 +2782,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-org111883e" class="outline-2">
-<h2 id="org111883e">Тогда почему же некоторые eDSL до жути нравятся, а от некоторых тошнит?</h2>
-<div class="outline-text-2" id="text-org111883e">
+<div id="outline-container-org1697cf3" class="outline-2">
+<h2 id="org1697cf3">Тогда почему же некоторые eDSL до жути нравятся, а от некоторых тошнит?</h2>
+<div class="outline-text-2" id="text-org1697cf3">
 <p>
 Сразу забегу вперёд. Чаще всего плохой eDSL получается, когда кто-то
 концентрируется на &ldquo;embedded language&rdquo;, забывая про &ldquo;domain specific&rdquo;. В
@@ -2794,9 +2801,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-org9606b55" class="outline-2">
-<h2 id="org9606b55">Уважение к коллеге</h2>
-<div class="outline-text-2" id="text-org9606b55">
+<div id="outline-container-orgcdb12da" class="outline-2">
+<h2 id="orgcdb12da">Уважение к коллеге</h2>
+<div class="outline-text-2" id="text-orgcdb12da">
 <p>
 Здесь очень важно отбросить привычку из продуктовой разработки скрывать от
 &ldquo;глупых пользователей&rdquo; &ldquo;опасные&rdquo; методы API. Когда ты пишешь библиотеку, твои
@@ -2810,9 +2817,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-org7694708" class="outline-2">
-<h2 id="org7694708">Ну а кишки-то куда девать?</h2>
-<div class="outline-text-2" id="text-org7694708">
+<div id="outline-container-org9f1aeb2" class="outline-2">
+<h2 id="org9f1aeb2">Ну а кишки-то куда девать?</h2>
+<div class="outline-text-2" id="text-org9f1aeb2">
 <p>
 Если делаешь библиотеку с eDSL - делай два артефакта. Один с описанием твоего
 домена в &ldquo;обычных&rdquo; функциях и классах - назовём его API. В другом можешь
@@ -2823,9 +2830,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-org1e265d0" class="outline-2">
-<h2 id="org1e265d0">Это пост не только про eDSL</h2>
-<div class="outline-text-2" id="text-org1e265d0">
+<div id="outline-container-orge58a864" class="outline-2">
+<h2 id="orge58a864">Это пост не только про eDSL</h2>
+<div class="outline-text-2" id="text-orge58a864">
 <p>
 То что я выше написал, работает и про обычную разработку библиотек. Сокрытие
 реализации - классная штука, которая помогает не бояться рефакторить код,
@@ -2841,9 +2848,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-orga1dadfb" class="outline-2">
-<h2 id="orga1dadfb">В общем, будьте котиками</h2>
-<div class="outline-text-2" id="text-orga1dadfb">
+<div id="outline-container-org1275f61" class="outline-2">
+<h2 id="org1275f61">В общем, будьте котиками</h2>
+<div class="outline-text-2" id="text-org1275f61">
 <p>
 Общайтесь с пользователями вашего кода на равных и вспоминайте этот пост, когда
 в очередной раз придётся копировать какой-то класс к себе в проект чтобы
@@ -2851,9 +2858,9 @@ embedded domain specific language, играющий по правилам язы
 </p>
 </div>
 </div>
-<div id="outline-container-orgd6c4d01" class="outline-2">
-<h2 id="orgd6c4d01">P.S.</h2>
-<div class="outline-text-2" id="text-orgd6c4d01">
+<div id="outline-container-org63c3026" class="outline-2">
+<h2 id="org63c3026">P.S.</h2>
+<div class="outline-text-2" id="text-org63c3026">
 <p>
 Меня на размышления про eDSL натолкнула часть про проблемы JUnit <a href="https://youtu.be/LEZv-kQUSi4">из этого
 доклада Стюарта Халловея</a>
