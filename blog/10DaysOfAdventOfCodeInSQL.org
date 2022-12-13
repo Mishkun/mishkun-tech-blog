@@ -1,7 +1,7 @@
 #+title: Что я узнал за 10 дней Advent Of Code на SQLite
 #+Date: 11-12-2022
 
-[[file:../attachments/sqlite.png]]
+[[file:../attachments/sqlite.jpg]]
 
 #+begin_abstract
 [[https://adventofcode.com/][Advent Of Code]] - популярный набор задачек по программированию в формате

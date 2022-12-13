@@ -1,7 +1,7 @@
 #+title: Ладонь против Ножа: Ручной DI вместо Dagger
 #+Date: 30-11-2022
 
-[[file:../attachments/handdi.png]]
+[[file:../attachments/handdi.jpg]]
 
 #+begin_abstract
 Год назад я написал [[file:Di-frameworks.org][пост]] про то что DI фреймворки не решают проблемы, а заменяют
