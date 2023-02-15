@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-12 Sun 20:03 -->
+<!-- 2023-02-15 Wed 15:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Как обязательное код-ревью вредит командной работе</title>
@@ -216,11 +216,14 @@ section,
 summary {
   display: block;
 }
-audio,
 canvas,
 progress,
 video {
   display: inline-block;
+}
+audio {
+  margin: 0 auto;
+  display: block;
 }
 audio:not([controls]) {
   display: none;
@@ -2744,7 +2747,13 @@ p.verse {
 </div>
 <div id="content" class="content">
 <h1 class="title">Как обязательное код-ревью вредит командной работе</h1>
-<div class="abstract" id="org0bbd1af">
+
+<div id="org37c67ec" class="figure">
+<p><img src="https://mishkun.xyz/attachments/codereview.jpeg" alt="codereview.jpeg" />
+</p>
+</div>
+
+<div class="abstract" id="orgf2e6488">
 <p>
 Обязательное код-ревью - одна из догм современного процесса разработки. Но
 выдерживает ли оно проверку на прочность, если осмыслить его критически? Можно
@@ -2755,10 +2764,13 @@ p.verse {
 
 </div>
 
+<audio controls="">
+      <source src="../attachments/golos_1_code_review.mp3" type="audio/mp3">
+</audio>
 
-<div id="outline-container-orgd112910" class="outline-2">
-<h2 id="orgd112910">Вред 1. Код-ревью маскирует несовершенства CI проверок</h2>
-<div class="outline-text-2" id="text-orgd112910">
+<div id="outline-container-org16369c3" class="outline-2">
+<h2 id="org16369c3">Вред 1. Код-ревью маскирует несовершенства CI проверок</h2>
+<div class="outline-text-2" id="text-org16369c3">
 <p>
 Код-ревью - отличная практика для того, чтобы закрывать отсутствие продвинутых
 линтеров, хорошего покрытия тестами и других проблем автоматизации CI. Да, на
@@ -2784,9 +2796,9 @@ p.verse {
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf9facb" class="outline-2">
-<h2 id="orgbf9facb">Вред 2. Код-ревью делает невозможным введение TBD</h2>
-<div class="outline-text-2" id="text-orgbf9facb">
+<div id="outline-container-org834394d" class="outline-2">
+<h2 id="org834394d">Вред 2. Код-ревью делает невозможным введение TBD</h2>
+<div class="outline-text-2" id="text-org834394d">
 <p>
 Но самый большой вред код-ревью в том, что это узкое горлышко для процесса
 разработки. Если ты начал вкладываться в CI/CD, рано или поздно ты придёшь к
@@ -2810,9 +2822,9 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-org477dd77" class="outline-2">
-<h2 id="org477dd77">Вред 3. Код-ревью размывает ответственность автора кода</h2>
-<div class="outline-text-2" id="text-org477dd77">
+<div id="outline-container-org12edf2e" class="outline-2">
+<h2 id="org12edf2e">Вред 3. Код-ревью размывает ответственность автора кода</h2>
+<div class="outline-text-2" id="text-org12edf2e">
 <p>
 Бывает, что я делаю какой-то нудный рефакторинг, а тем временем рабочая пятница
 подходит к концу, коллеги зовут в бар и вообще неохота все выходные пытаться
@@ -2836,9 +2848,9 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-orgb8d1d10" class="outline-2">
-<h2 id="orgb8d1d10">Вред 4. Код-ревью превращается в формальность</h2>
-<div class="outline-text-2" id="text-orgb8d1d10">
+<div id="outline-container-orgc0cf850" class="outline-2">
+<h2 id="orgc0cf850">Вред 4. Код-ревью превращается в формальность</h2>
+<div class="outline-text-2" id="text-orgc0cf850">
 <p>
 Вспомни, когда в последний раз ты находил какие-то критичные баги, без правки
 которых нельзя было бы мерджить код в транк? Особенно если задача типовая и
@@ -2862,22 +2874,23 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-orgc4f52d5" class="outline-2">
-<h2 id="orgc4f52d5">Вред 5. Код-ревью - слишком поздний этап для крупных изменений</h2>
-<div class="outline-text-2" id="text-orgc4f52d5">
+<div id="outline-container-org0ad94f0" class="outline-2">
+<h2 id="org0ad94f0">Вред 5. Код-ревью - слишком поздний этап для крупных изменений</h2>
+<div class="outline-text-2" id="text-org0ad94f0">
 <p>
 Даже если я увидел на ревью какие-то проблемы, из-за которых этот код нельзя
 вливать в транк - чаще всего это слишком поздний этап для фидбека по
 архитектуре. Автору кода придётся переделывать большую часть работы. Это ведёт к
 фрустрации и возможному ухудшению взаимотношений в команде. Или же ухудшению
 кодовой базы, если автор таки сторгуется отрефакторить это &ldquo;потом&rdquo;, которое
-может превратиться в &ldquo;никогда&rdquo;.
+может превратиться в &ldquo;никогда&rdquo;. Ведь фиговый, но уже написанный, код гораздо
+лучше кода хорошего, но ещё не готового.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf2f8e8f" class="outline-2">
-<h2 id="orgf2f8e8f">Вред 6. Код-ревью мешает доверию в команде</h2>
-<div class="outline-text-2" id="text-orgf2f8e8f">
+<div id="outline-container-orgd7a36fa" class="outline-2">
+<h2 id="orgd7a36fa">Вред 6. Код-ревью мешает доверию в команде</h2>
+<div class="outline-text-2" id="text-orgd7a36fa">
 <p>
 Есть ещё более абстрактная, но тоже важная проблема в код-ревью. Эта практика,
 как и пулл-реквесты, стала невероятно популярной в opensource разработке. И
@@ -2893,9 +2906,9 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-org871a37f" class="outline-2">
-<h2 id="org871a37f">Польза. Код-ревью это отличный инструмент онбординга и обучения</h2>
-<div class="outline-text-2" id="text-org871a37f">
+<div id="outline-container-org01aca21" class="outline-2">
+<h2 id="org01aca21">Польза. Код-ревью это отличный инструмент онбординга и обучения</h2>
+<div class="outline-text-2" id="text-org01aca21">
 <p>
 Есть в код-ревью и польза, ведь есть разработчики, за которыми всё-таки стоит
 присматривать, хотя бы на первых порах. Это джуны и новенькие, которые ещё не до
@@ -2905,9 +2918,9 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-org7e0809b" class="outline-2">
-<h2 id="org7e0809b">Код-ревью мертво?</h2>
-<div class="outline-text-2" id="text-org7e0809b">
+<div id="outline-container-orgf31ec09" class="outline-2">
+<h2 id="orgf31ec09">Код-ревью мертво?</h2>
+<div class="outline-text-2" id="text-orgf31ec09">
 <p>
 Теперь, когда я привёл примеры вреда и пользы код-ревью, ситуация выглядит
 ужасно. Неужели код-ревью в 2к23 должно умереть, как практика? Нет, конечно. Я
@@ -2938,9 +2951,9 @@ trunk-based-development. Для достижения максимальной п
 </p>
 </div>
 </div>
-<div id="outline-container-orgce73394" class="outline-2">
-<h2 id="orgce73394">Что ты скажешь?</h2>
-<div class="outline-text-2" id="text-orgce73394">
+<div id="outline-container-orgc8da93d" class="outline-2">
+<h2 id="orgc8da93d">Что ты скажешь?</h2>
+<div class="outline-text-2" id="text-orgc8da93d">
 <p>
 Я не затронул другие решения, таких как парное программирование (которое ещё
 зовут Continuous Code Review). Какие у тебя есть идеи чтобы уменьшить проблемы
