@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+	<channel>
+		<title>Голос из-под шторки</title>
+		<link>https://mishkun.xyz</link>
+		<description>Аудиоверсия авторского блога об android-разработке и не только от Миши Левченко, заботливо начитанная для ваших ушек. Читать на https://mishkun.xyz, комментировать на https://t.me/izpodshtorki</description>
+		<language>ru</language>
+		<pubDate>Wed, 15 Feb 2023 16:53:12 +0200</pubDate>
+		<copyright>&#169; 2023 Миша Левченко</copyright>
+		<itunes:author>Миша Левченко</itunes:author>
+		<itunes:owner>
+				<itunes:name>Миша Левченко</itunes:name>
+				<itunes:email>mishkun.lev@gmail.com</itunes:email>
+			</itunes:owner>
+		<itunes:image href="https://mishkun.xyz/attachments/izpodshtorki.jpg" />
+		<itunes:type>episodic</itunes:type>
+		<itunes:category text="Technology" />
+		<itunes:explicit>false</itunes:explicit>
+<item>
+			<title>Как обязательное код-ревью вредит командной работе</title>
+			<description>Обязательное код-ревью - одна из догм современного процесса разработки. Но выдерживает ли оно проверку на прочность, если осмыслить его критически? Можно ли обойтись без код-ревью, не жертвуя качеством конечного продукта? И полезно ли оно на самом деле? Я пришёл к выводу, что чаще код-ревью вредит проекту. Почему так и что с этим делать - расскажу в этом эпизоде. 00:00:00: Введение 00:00:32: Код-ревью маскирует несовершенство CI 00:01:38: Код-ревью делает невозможным TBD 00:02:55: Код-ревью размывает ответственность автора 00:03:55: Код-ревью превращается в формальность 00:05:02: Код-ревью слишком поздно для изменений 00:05:34: Код-ревью вредит доверию в команде 00:06:08: Польза код-ревью 00:06:35: Код-ревью мертво?</description>
+			<pubDate>Wed, 15 Feb 2023 00:00:00 +0200</pubDate>
+			<enclosure length="12066178" type="audio/mp3" url="https://mishkun.xyz/attachments/golos_1_code_review.mp3" />
+			<guid isPermaLink="true">1562265081</guid>
+			<itunes:episodeType>full</itunes:episodeType>
+			<itunes:duration>499.670125</itunes:duration>
+</item>
+	</channel>
+</rss>
